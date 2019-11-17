@@ -1,23 +1,24 @@
 ﻿using DtoMapping;
-using Homework_Tomas_Kireilis.Interfaces;
+using Factory;
+using FeeCalculator.Interfaces;
 using Models;
 using Models.Merchants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Homework_Tomas_Kireilis
+namespace FeeCalculator
 {
     public class FeeCalculator : IFeeCalculator
     {
         private readonly List<Merchant> _merchants = new List<Merchant>();
-        private readonly IMerchantFactory merchantFactory;
-        public readonly IMapper mapper;
+        private readonly IMerchantFactory _merchantFactory;
+        public readonly IMapper Mapper;
 
-        public FeeCalculator(IMapper Mapper, IMerchantFactory merchantFactory)
+        public FeeCalculator(IMapper mapper, IMerchantFactory merchantFactory)
         {
-            mapper = Mapper;
-            this.merchantFactory = merchantFactory;
+            Mapper = mapper;
+            _merchantFactory = merchantFactory;
         }
 
         public Transaction Calculate(Transaction transaction)
@@ -26,12 +27,12 @@ namespace Homework_Tomas_Kireilis
             if (merchant != null)
             {
                 var calculatedFee = merchant.Fees.CalculateFee(
-                    mapper.MapTransactionToTransationFee(
+                    Mapper.MapTransactionToTransactionFee(
                         transaction,
                         merchant.TransactionFee.DefaultFeeForTransactionValue(merchant.Name),
                         merchant.TransactionFee.MonthlyFeeForTransactionValue()));
 
-                transaction = mapper.MapTransactionFeeToTransaction(calculatedFee);
+                transaction = Mapper.MapTransactionFeeToTransaction(calculatedFee);
                 transaction.BasicFeeAmount = decimal.Round(transaction.BasicFeeAmount, 2);
 
                 return transaction;
@@ -52,7 +53,7 @@ namespace Homework_Tomas_Kireilis
 
             if (merchants.Count == 0)
             {
-                var merchant = merchantFactory.CreateMerchant(transaction);
+                var merchant = _merchantFactory.CreateMerchant(transaction);
                 _merchants.Add(merchant);
                 return merchant;
             }

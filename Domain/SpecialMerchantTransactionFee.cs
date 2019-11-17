@@ -5,7 +5,7 @@ namespace Domain
     public class SpecialMerchantTransactionFee : MerchantTransactionFee
     {
         private static SpecialMerchantTransactionFee _instance;
-        private static object syncLock = new object();
+        private static readonly object SyncLock = new object();
         public decimal FeeDiscount { get; set; }
         private const string DefaultFeeForTransaction = "DefaultFeeForTransaction";
         private const string MonthlyFeeForTransaction = "MonthlyFeeForTransaction";
@@ -19,7 +19,7 @@ namespace Domain
             { $"{MonthlyFeeForTransaction}", 29}
         };
 
-        public readonly List<string> _specialMerchants = new List<string>
+        public readonly List<string> SpecialMerchants = new List<string>
         {
             { TeliaName},
             { CircleKName}
@@ -48,7 +48,7 @@ namespace Domain
         {
             if (_instance == null)
             {
-                lock (syncLock)
+                lock (SyncLock)
                 {
                     if (_instance == null)
                     {

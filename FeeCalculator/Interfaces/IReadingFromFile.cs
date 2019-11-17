@@ -1,7 +1,7 @@
 ﻿using Models;
 using System.Collections.Generic;
 
-namespace Homework_Tomas_Kireilis.Interfaces
+namespace FeeCalculator.Interfaces
 {
     public interface IReadingFromFile
     {

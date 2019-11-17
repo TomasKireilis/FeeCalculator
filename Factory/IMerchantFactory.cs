@@ -1,6 +1,7 @@
-﻿using Models.Merchants;
+﻿using Models;
+using Models.Merchants;
 
-namespace Models
+namespace Factory
 {
     public interface IMerchantFactory
     {

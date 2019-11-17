@@ -7,6 +7,6 @@ namespace DtoMapping
     {
         Transaction MapTransactionFeeToTransaction(TransactionFee transactionFees);
 
-        TransactionFee MapTransactionToTransationFee(Transaction transaction, decimal basicFee = 0, decimal monthlyFee = 0);
+        TransactionFee MapTransactionToTransactionFee(Transaction transaction, decimal basicFee = 0, decimal monthlyFee = 0);
     }
 }

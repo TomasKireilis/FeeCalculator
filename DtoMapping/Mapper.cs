@@ -5,7 +5,7 @@ namespace DtoMapping
 {
     public class Mapper : IMapper
     {
-        public TransactionFee MapTransactionToTransationFee(Transaction transaction, decimal basicFee = 0, decimal monthlyFee = 0)
+        public TransactionFee MapTransactionToTransactionFee(Transaction transaction, decimal basicFee = 0, decimal monthlyFee = 0)
         {
             return new TransactionFee()
             {

@@ -1,21 +1,19 @@
-﻿using Homework_Tomas_Kireilis.Interfaces;
+﻿using FeeCalculator.Interfaces;
 using Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Homework_Tomas_Kireilis
+namespace FeeCalculator
 {
     public class ReadingFromFile : IReadingFromFile
     {
         private readonly string _transactionPath;
-        private readonly string _specialMerchantsPath;
 
-        public ReadingFromFile(string transactionPath, string specialMerchantsPath)
+        public ReadingFromFile(string transactionPath)
         {
             _transactionPath = transactionPath;
-            _specialMerchantsPath = specialMerchantsPath;
         }
 
         public async IAsyncEnumerable<Transaction> ReadTransactions()

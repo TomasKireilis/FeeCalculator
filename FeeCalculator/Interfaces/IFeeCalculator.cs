@@ -1,6 +1,6 @@
 ﻿using Models;
 
-namespace Homework_Tomas_Kireilis.Interfaces
+namespace FeeCalculator.Interfaces
 {
     public interface IFeeCalculator
     {

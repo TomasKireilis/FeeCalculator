@@ -5,11 +5,11 @@ namespace Fees
 {
     public class Fees : IFees
     {
-        public DateTimeOffset LastMontlyFee;
+        public DateTimeOffset LastMonthlyFee;
 
         public TransactionFee CalculateFee(TransactionFee transactionFee)
         {
-            var TransactionFee = new TransactionFee
+            var convertedTransactionFee = new TransactionFee
             {
                 Amount = transactionFee.Amount,
                 Date = transactionFee.Date,
@@ -21,21 +21,21 @@ namespace Fees
 
             if (CheckIfDateIsNewerForMonthlyFee(transactionFee.Date))
             {
-                TransactionFee.MonthlyFeeAmount = TransactionFixedFee(transactionFee.MonthlyFee);
-                LastMontlyFee = transactionFee.Date;
+                convertedTransactionFee.MonthlyFeeAmount = TransactionFixedFee(transactionFee.MonthlyFee);
+                LastMonthlyFee = transactionFee.Date;
             }
 
-            return TransactionFee;
+            return convertedTransactionFee;
         }
 
         private bool CheckIfDateIsNewerForMonthlyFee(DateTimeOffset transactionDate)
         {
-            if (LastMontlyFee.Year == transactionDate.Year && LastMontlyFee.Month < transactionDate.Month)
+            if (LastMonthlyFee.Year == transactionDate.Year && LastMonthlyFee.Month < transactionDate.Month)
             {
                 return true;
             }
 
-            if (LastMontlyFee.Year < transactionDate.Year)
+            if (LastMonthlyFee.Year < transactionDate.Year)
             {
                 return true;
             }

@@ -1,11 +1,12 @@
 ﻿using DtoMapping;
-using Homework_Tomas_Kireilis.Interfaces;
+using Factory;
+using FeeCalculator.Interfaces;
 using Models;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
 
-namespace Homework_Tomas_Kireilis
+namespace FeeCalculator
 {
     internal class Program
     {
@@ -14,12 +15,12 @@ namespace Homework_Tomas_Kireilis
 
         public static async Task Main(string[] args)
         {
-            await CalculateFee("transactions.txt", "specialMerchants.txt");
+            await CalculateFee("transactions.txt");
         }
 
-        public static async Task CalculateFee(string transactionPath, string specialMerchantPath)
+        public static async Task CalculateFee(string transactionPath)
         {
-            _reader = new ReadingFromFile(transactionPath, specialMerchantPath);
+            _reader = new ReadingFromFile(transactionPath);
             _feeCalculator = new FeeCalculator(new Mapper(), new MerchantFactory());
             await foreach (var transaction in _reader.ReadTransactions())
             {

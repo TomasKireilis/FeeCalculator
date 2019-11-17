@@ -6,7 +6,7 @@ namespace Domain
     public class MerchantTransactionFee : IMerchantTransactionFee
     {
         private static MerchantTransactionFee _instance;
-        private static object syncLock = new object();
+        private static readonly object SyncLock = new object();
 
         private const string DefaultFeeForTransaction = "DefaultFeeForTransaction";
         private const string MonthlyFeeForTransaction = "MonthlyFeeForTransaction";
@@ -58,7 +58,7 @@ namespace Domain
         {
             if (_instance == null)
             {
-                lock (syncLock)
+                lock (SyncLock)
                 {
                     if (_instance == null)
                     {
