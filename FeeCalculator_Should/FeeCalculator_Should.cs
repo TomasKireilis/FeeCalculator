@@ -21,7 +21,7 @@ namespace FeeCalculator_Should
             //setup
             var transaction = CreateTransaction(dateString, merchantName, amount);
             var fees = new Mock<IFees>();
-            var feeCalculator = new FeeCalculator(fees.Object, 1, new List<Merchant>(), 20);
+            var feeCalculator = new FeeCalculator(fees.Object, 1, new List<SpecialMerchant>(), 20);
             fees.Setup(x => x.TransactionFixedFee(20)).Returns(20);
             fees.Setup(x => x.TransactionPercentageFee(transaction.Amount, 1)).Returns((decimal)15.00786454);
 
@@ -48,7 +48,7 @@ namespace FeeCalculator_Should
             var preTransaction = CreateTransaction(preTransactionDateString, merchantName, amount);
             var transaction = CreateTransaction(dateString, merchantName, amount);
             var fees = new Mock<IFees>();
-            var feeCalculator = new FeeCalculator(fees.Object, 1, new List<Merchant>(), 20);
+            var feeCalculator = new FeeCalculator(fees.Object, 1, new List<SpecialMerchant>(), 20);
             fees.Setup(x => x.TransactionFixedFee(20)).Returns(20);
             fees.Setup(x => x.TransactionPercentageFee(transaction.Amount, 1)).Returns((decimal)15.00786454);
 
@@ -76,7 +76,7 @@ namespace FeeCalculator_Should
             var preTransaction = CreateTransaction(preTransactionDateString, merchantName, amount);
             var transaction = CreateTransaction(dateString, merchantName, amount);
             var fees = new Mock<IFees>();
-            var feeCalculator = new FeeCalculator(fees.Object, 1, new List<Merchant>(), 20);
+            var feeCalculator = new FeeCalculator(fees.Object, 1, new List<SpecialMerchant>(), 20);
             fees.Setup(x => x.TransactionFixedFee(20)).Returns(20);
             fees.Setup(x => x.TransactionPercentageFee(transaction.Amount, 1)).Returns((decimal)15.00786454);
 
@@ -103,14 +103,14 @@ namespace FeeCalculator_Should
             //setup
             var preTransaction = CreateTransaction(preTransactionDateString, merchantName, amount);
             var transaction = CreateTransaction(dateString, merchantName, amount);
-            var merchant = new Merchant
+            var merchant = new SpecialMerchant
             {
                 Name = merchantName,
                 FeeDiscount = 10
             };
 
             var fees = new Mock<IFees>();
-            var feeCalculator = new FeeCalculator(fees.Object, 1, new List<Merchant> { merchant }, 20);
+            var feeCalculator = new FeeCalculator(fees.Object, 1, new List<SpecialMerchant> { merchant }, 20);
             fees.Setup(x => x.TransactionFixedFee(20)).Returns(20);
             fees.Setup(x => x.TransactionPercentageFeeDiscount((decimal)15.00786454, 10)).Returns((decimal)45.215);
             fees.Setup(x => x.TransactionPercentageFee(transaction.Amount, 1)).Returns((decimal)15.00786454);

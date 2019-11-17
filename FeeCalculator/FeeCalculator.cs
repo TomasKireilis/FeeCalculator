@@ -1,5 +1,7 @@
-﻿using Homework_Tomas_Kireilis.Interfaces;
+﻿using Domain;
+using Homework_Tomas_Kireilis.Interfaces;
 using Models;
+using Models.Merchants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +14,13 @@ namespace Homework_Tomas_Kireilis
         private readonly decimal _basicTransactionPercentageFee;
         private readonly decimal _monthlyTransactionPercentageFee;
         private readonly List<Merchant> _merchants;
+        private readonly MerchantTransactionFee merchantTransactionFee;
+        private readonly MerchantFactory merchantFactory;
 
-        public FeeCalculator(IFees fees, decimal transactionPercentageFee, List<Merchant> merchants, decimal monthlyTransactionPercentageFee)
+        public FeeCalculator(IFees fees, decimal transactionPercentageFee, decimal monthlyTransactionPercentageFee)
         {
             _fees = fees;
             _basicTransactionPercentageFee = transactionPercentageFee;
-            _merchants = merchants;
             _monthlyTransactionPercentageFee = monthlyTransactionPercentageFee;
         }
 
@@ -60,22 +63,10 @@ namespace Homework_Tomas_Kireilis
 
             if (merchants.Count == 0)
             {
-                return AddNewMerchant(transaction);
+                return merchantFactory.CreateMerchant(transaction);
             }
 
             return merchants[0];
-        }
-
-        private Merchant AddNewMerchant(Transaction transaction)
-        {
-            var merchant = new Merchant
-            {
-                Name = transaction.MerchantName
-            };
-            _merchants.Add(
-                merchant
-            );
-            return merchant;
         }
 
         private void ChangeLastMonthlyTransactionToMerchant(Transaction transaction)
