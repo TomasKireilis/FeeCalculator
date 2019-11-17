@@ -1,11 +1,9 @@
 ﻿using Homework_Tomas_Kireilis.Interfaces;
 using Models;
-using Models.Merchants;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Homework_Tomas_Kireilis
 {

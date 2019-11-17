@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 namespace Domain
 {
     public class MerchantTransactionFee : IMerchantTransactionFee
@@ -9,6 +10,7 @@ namespace Domain
 
         private const string DefaultFeeForTransaction = "DefaultFeeForTransaction";
         private const string MonthlyFeeForTransaction = "MonthlyFeeForTransaction";
+
         protected Dictionary<string, decimal> DefaultFees { get; set; } = new Dictionary<string, decimal>
         {
             { $"{DefaultFeeForTransaction}." , 1 },
@@ -17,20 +19,21 @@ namespace Domain
 
         protected MerchantTransactionFee()
         {
-
         }
-        public decimal DefaultFeeForTransactionValue(string transactionMerchantName="")
+
+        public decimal DefaultFeeForTransactionValue(string transactionMerchantName = "")
         {
-            if(TryGetValueFromSettings($"{DefaultFeeForTransaction}.{transactionMerchantName}",out decimal value))
+            if (TryGetValueFromSettings($"{DefaultFeeForTransaction}.{transactionMerchantName}", out decimal value))
             {
                 return value;
             }
-            if (TryGetValueFromSettings($"{DefaultFeeForTransaction}.",out decimal defaultValue))
+            if (TryGetValueFromSettings($"{DefaultFeeForTransaction}.", out decimal defaultValue))
             {
                 return defaultValue;
             }
             throw new ArgumentException($"{transactionMerchantName} was not found in default fees");
         }
+
         public decimal MonthlyFeeForTransactionValue()
         {
             if (TryGetValueFromSettings(MonthlyFeeForTransaction, out decimal defaultValue))
@@ -39,7 +42,8 @@ namespace Domain
             }
             throw new ArgumentException($"{MonthlyFeeForTransaction} was not found in monthly fees");
         }
-        protected bool TryGetValueFromSettings(string key,out decimal decimalValue)
+
+        protected bool TryGetValueFromSettings(string key, out decimal decimalValue)
         {
             if (DefaultFees.TryGetValue(key, out decimal value))
             {
@@ -48,8 +52,8 @@ namespace Domain
             }
             decimalValue = 0;
             return false;
-        
         }
+
         public static MerchantTransactionFee GetInstance()
         {
             if (_instance == null)

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Fees.Models
 {
-   public class TransactionFee
+    public class TransactionFee
     {
         public DateTimeOffset Date { get; set; }
         public string MerchantName { get; set; }

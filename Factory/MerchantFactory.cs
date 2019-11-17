@@ -1,5 +1,4 @@
-﻿
-using Domain;
+﻿using Domain;
 using Models.Merchants;
 
 namespace Models
@@ -10,11 +9,11 @@ namespace Models
         {
             if (SpecialMerchantTransactionFee.GetInstance()._specialMerchants.Contains(transaction.MerchantName))
             {
-                return new Merchant(SpecialMerchantTransactionFee.GetInstance(), new Fees.Fees(),transaction.MerchantName);
+                return new Merchant(SpecialMerchantTransactionFee.GetInstance(), new Fees.Fees(), transaction.MerchantName);
             }
             else
             {
-                return new Merchant(MerchantTransactionFee.GetInstance(), new Fees.Fees(),transaction.MerchantName);
+                return new Merchant(MerchantTransactionFee.GetInstance(), new Fees.Fees(), transaction.MerchantName);
             }
         }
     }

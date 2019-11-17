@@ -1,5 +1,4 @@
-﻿using System;
-using Fees.Models;
+﻿using Fees.Models;
 using Models;
 
 namespace DtoMapping
@@ -18,8 +17,8 @@ namespace DtoMapping
                 BasicFee = basicFee,
                 MonthlyFee = monthlyFee
             };
-
         }
+
         public Transaction MapTransactionFeeToTransaction(TransactionFee transactionFees)
         {
             return new Transaction()
@@ -30,7 +29,6 @@ namespace DtoMapping
                 BasicFeeAmount = transactionFees.BasicFeeAmount,
                 MonthlyFeeAmount = transactionFees.MonthlyFeeAmount
             };
-
         }
     }
 }

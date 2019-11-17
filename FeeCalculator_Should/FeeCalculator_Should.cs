@@ -1,9 +1,9 @@
-using FeeCalculator;
 using Homework_Tomas_Kireilis;
 using Models;
 using Moq;
 using System;
 using System.Collections.Generic;
+using Fees;
 using Xunit;
 
 namespace FeeCalculator_Should

@@ -1,5 +1,4 @@
-﻿using Domain;
-using DtoMapping;
+﻿using DtoMapping;
 using Homework_Tomas_Kireilis.Interfaces;
 using Models;
 using Models.Merchants;
@@ -14,6 +13,7 @@ namespace Homework_Tomas_Kireilis
         private readonly List<Merchant> _merchants = new List<Merchant>();
         private readonly IMerchantFactory merchantFactory;
         public readonly IMapper mapper;
+
         public FeeCalculator(IMapper Mapper, IMerchantFactory merchantFactory)
         {
             mapper = Mapper;

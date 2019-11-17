@@ -1,6 +1,4 @@
-﻿
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Domain
 {
@@ -13,6 +11,7 @@ namespace Domain
         private const string MonthlyFeeForTransaction = "MonthlyFeeForTransaction";
         private const string TeliaName = "TELIA";
         private const string CircleKName = "CIRCLE_K";
+
         private readonly Dictionary<string, decimal> _defaultFees = new Dictionary<string, decimal>
         {
             { $"{DefaultFeeForTransaction}.{TeliaName}" ,(decimal) 0.9 },
@@ -25,10 +24,11 @@ namespace Domain
             { TeliaName},
             { CircleKName}
         };
+
         public SpecialMerchantTransactionFee()
         {
-          
         }
+
         private void ChangeSettingsDictionary()
         {
             foreach (var fee in _defaultFees)
@@ -43,6 +43,7 @@ namespace Domain
                 }
             }
         }
+
         public new static SpecialMerchantTransactionFee GetInstance()
         {
             if (_instance == null)
@@ -56,7 +57,7 @@ namespace Domain
                     }
                 }
             }
-            
+
             return _instance;
         }
     }

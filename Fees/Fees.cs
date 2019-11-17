@@ -1,5 +1,5 @@
-﻿using System;
-using Fees.Models;
+﻿using Fees.Models;
+using System;
 
 namespace Fees
 {
@@ -42,6 +42,7 @@ namespace Fees
 
             return false;
         }
+
         private decimal TransactionPercentageFee(decimal amount, decimal feeAmount)
         {
             if (feeAmount > 0)

@@ -1,4 +1,3 @@
-using FeeCalculator;
 using System;
 using Xunit;
 
@@ -66,7 +65,7 @@ namespace FeeCalculator_Should
         public void ThrowError_When_TransactionFixedFee_FeeAmountIsWrong(decimal feeAmount)
         {
             //setup
-            var fees = new Fees();
+            var fees = new Fees.Fees();
 
             //act & Assert
             Assert.Throws<ArgumentException>(() => fees.TransactionFixedFee(feeAmount));
@@ -79,7 +78,7 @@ namespace FeeCalculator_Should
         public void ThrowError_When_TransactionPercentageFeeDiscount_FeeAmountIsWrong(decimal feeAmount)
         {
             //setup
-            var fees = new Fees();
+            var fees = new Fees.Fees();
 
             //act & Assert
             Assert.Throws<ArgumentException>(() => fees.TransactionPercentageFeeDiscount(10, feeAmount));

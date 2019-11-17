@@ -20,8 +20,8 @@ namespace Homework_Tomas_Kireilis
         public static async Task CalculateFee(string transactionPath, string specialMerchantPath)
         {
             _reader = new ReadingFromFile(transactionPath, specialMerchantPath);
-            _feeCalculator = new FeeCalculator(new Mapper(),new MerchantFactory());
-            await foreach (var transaction in  _reader.ReadTransactions())
+            _feeCalculator = new FeeCalculator(new Mapper(), new MerchantFactory());
+            await foreach (var transaction in _reader.ReadTransactions())
             {
                 var calculatedTransaction = _feeCalculator.Calculate(transaction);
                 WriteToConsole(calculatedTransaction);
