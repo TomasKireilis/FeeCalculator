@@ -11,8 +11,8 @@ namespace Domain
         public decimal FeeDiscount { get; set; }
         private const string DefaultFeeForTransaction = "DefaultFeeForTransaction";
         private const string MonthlyFeeForTransaction = "MonthlyFeeForTransaction";
-        private const string TeliaName = "Telia";
-        private const string CircleKName = "CircleK";
+        private const string TeliaName = "TELIA";
+        private const string CircleKName = "CIRCLE_K";
         private readonly Dictionary<string, decimal> _defaultFees = new Dictionary<string, decimal>
         {
             { $"{DefaultFeeForTransaction}.{TeliaName}" ,(decimal) 0.9 },

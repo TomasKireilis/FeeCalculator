@@ -52,7 +52,9 @@ namespace Homework_Tomas_Kireilis
 
             if (merchants.Count == 0)
             {
-                return merchantFactory.CreateMerchant(transaction);
+                var merchant = merchantFactory.CreateMerchant(transaction);
+                _merchants.Add(merchant);
+                return merchant;
             }
 
             return merchants[0];

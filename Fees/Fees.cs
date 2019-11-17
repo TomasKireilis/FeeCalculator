@@ -17,17 +17,15 @@ namespace Fees
                 BasicFee = transactionFee.BasicFee,
                 MonthlyFee = transactionFee.MonthlyFee,
                 BasicFeeAmount = TransactionPercentageFee(transactionFee.Amount, transactionFee.BasicFee),
-                MonthlyFeeAmount = TransactionFixedFee(transactionFee.MonthlyFee),
             };
-            ChangeLastMonthlyTransactionToMerchant(TransactionFee);
-            return TransactionFee;
-        }
-        private void ChangeLastMonthlyTransactionToMerchant(TransactionFee transaction)
-        {
-            if (CheckIfDateIsNewerForMonthlyFee(transaction.Date))
+
+            if (CheckIfDateIsNewerForMonthlyFee(transactionFee.Date))
             {
-                LastMontlyFee = transaction.Date;
+                TransactionFee.MonthlyFeeAmount = TransactionFixedFee(transactionFee.MonthlyFee);
+                LastMontlyFee = transactionFee.Date;
             }
+
+            return TransactionFee;
         }
 
         private bool CheckIfDateIsNewerForMonthlyFee(DateTimeOffset transactionDate)

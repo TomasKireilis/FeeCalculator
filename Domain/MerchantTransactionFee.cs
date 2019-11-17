@@ -15,13 +15,17 @@ namespace Domain
             { $"{MonthlyFeeForTransaction}", 29}
         };
 
+        protected MerchantTransactionFee()
+        {
+
+        }
         public decimal DefaultFeeForTransactionValue(string transactionMerchantName="")
         {
             if(TryGetValueFromSettings($"{DefaultFeeForTransaction}.{transactionMerchantName}",out decimal value))
             {
                 return value;
             }
-            if (TryGetValueFromSettings($"{DefaultFeeForTransaction}.{transactionMerchantName}",out decimal defaultValue))
+            if (TryGetValueFromSettings($"{DefaultFeeForTransaction}.",out decimal defaultValue))
             {
                 return defaultValue;
             }
