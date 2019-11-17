@@ -4,17 +4,17 @@ using Models.Merchants;
 
 namespace Models
 {
-    public class MerchantFactory
+    public class MerchantFactory : IMerchantFactory
     {
         public Merchant CreateMerchant(Transaction transaction)
         {
             if (SpecialMerchantTransactionFee.GetInstance()._specialMerchants.Contains(transaction.MerchantName))
-            { 
-                return new Merchant(SpecialMerchantTransactionFee.GetInstance());
+            {
+                return new Merchant(SpecialMerchantTransactionFee.GetInstance(), new Fees.Fees());
             }
             else
             {
-              return new Merchant(MerchantTransactionFee.GetInstance());
+                return new Merchant(MerchantTransactionFee.GetInstance(), new Fees.Fees());
             }
         }
     }

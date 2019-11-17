@@ -1,5 +1,5 @@
+using FeeCalculator;
 using Homework_Tomas_Kireilis;
-using Homework_Tomas_Kireilis.Interfaces;
 using Models;
 using Moq;
 using System;

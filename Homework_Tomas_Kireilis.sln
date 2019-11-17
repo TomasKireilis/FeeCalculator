@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factory", "Factory\Factory.csproj", "{D8113E49-FAF5-4E86-8F7F-1BF6D873C268}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fees", "Fees\Fees.csproj", "{27F28CFC-189D-421E-B7FC-D87DDD327C2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DtoMapping", "DtoMapping\DtoMapping.csproj", "{9594FE07-25AE-4C15-AB69-54DF5685FBCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{D8113E49-FAF5-4E86-8F7F-1BF6D873C268}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8113E49-FAF5-4E86-8F7F-1BF6D873C268}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8113E49-FAF5-4E86-8F7F-1BF6D873C268}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27F28CFC-189D-421E-B7FC-D87DDD327C2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27F28CFC-189D-421E-B7FC-D87DDD327C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27F28CFC-189D-421E-B7FC-D87DDD327C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27F28CFC-189D-421E-B7FC-D87DDD327C2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9594FE07-25AE-4C15-AB69-54DF5685FBCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9594FE07-25AE-4C15-AB69-54DF5685FBCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9594FE07-25AE-4C15-AB69-54DF5685FBCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9594FE07-25AE-4C15-AB69-54DF5685FBCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -27,7 +27,6 @@ namespace Domain
         };
         public SpecialMerchantTransactionFee()
         {
-            ChangeSettingsDictionary();
           
         }
         private void ChangeSettingsDictionary()
@@ -38,7 +37,10 @@ namespace Domain
                 {
                     DefaultFees[fee.Key] = fee.Value;
                 }
-                DefaultFees.Add(fee.Key, fee.Value);
+                else
+                {
+                    DefaultFees.Add(fee.Key, fee.Value);
+                }
             }
         }
         public new static SpecialMerchantTransactionFee GetInstance()
@@ -50,10 +52,11 @@ namespace Domain
                     if (_instance == null)
                     {
                         _instance = new SpecialMerchantTransactionFee();
+                        _instance.ChangeSettingsDictionary();
                     }
                 }
             }
-
+            
             return _instance;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Domain;
+using DtoMapping;
 using Homework_Tomas_Kireilis.Interfaces;
 using Models;
 using Models.Merchants;
@@ -10,41 +11,29 @@ namespace Homework_Tomas_Kireilis
 {
     public class FeeCalculator : IFeeCalculator
     {
-        private readonly IFees _fees;
-        private readonly decimal _basicTransactionPercentageFee;
-        private readonly decimal _monthlyTransactionPercentageFee;
-        private readonly List<Merchant> _merchants;
-        private readonly MerchantTransactionFee merchantTransactionFee;
-        private readonly MerchantFactory merchantFactory;
-
-        public FeeCalculator(IFees fees, decimal transactionPercentageFee, decimal monthlyTransactionPercentageFee)
+        private readonly List<Merchant> _merchants = new List<Merchant>();
+        private readonly IMerchantFactory merchantFactory;
+        public readonly IMapper mapper;
+        public FeeCalculator(IMapper Mapper, IMerchantFactory merchantFactory)
         {
-            _fees = fees;
-            _basicTransactionPercentageFee = transactionPercentageFee;
-            _monthlyTransactionPercentageFee = monthlyTransactionPercentageFee;
+            mapper = Mapper;
+            this.merchantFactory = merchantFactory;
         }
 
         public Transaction Calculate(Transaction transaction)
         {
             var merchant = CheckMerchantValidity(transaction);
-            transaction.BasicFeeAmount =
-                    _fees.TransactionPercentageFee(transaction.Amount, _basicTransactionPercentageFee);
-
-            if (CheckIfNeedToAddMonthlyFeeToTransaction(transaction))
-            {
-                transaction.MonthlyFeeAmount =
-                    _fees.TransactionFixedFee(_monthlyTransactionPercentageFee);
-            }
             if (merchant != null)
             {
-                if (merchant.FeeDiscount != 0)
-                {
-                    transaction.BasicFeeAmount =
-                        _fees.TransactionPercentageFeeDiscount(transaction.BasicFeeAmount, merchant.FeeDiscount);
-                }
+                var calculatedFee = merchant.Fees.CalculateFee(
+                    mapper.MapTransactionToTransationFee(
+                        transaction,
+                        merchant.TransactionFee.DefaultFeeForTransactionValue(merchant.Name),
+                        merchant.TransactionFee.MonthlyFeeForTransactionValue()));
 
+                transaction = mapper.MapTransactionFeeToTransaction(calculatedFee);
                 transaction.BasicFeeAmount = decimal.Round(transaction.BasicFeeAmount, 2);
-                ChangeLastMonthlyTransactionToMerchant(transaction);
+
                 return transaction;
             }
 
@@ -67,39 +56,6 @@ namespace Homework_Tomas_Kireilis
             }
 
             return merchants[0];
-        }
-
-        private void ChangeLastMonthlyTransactionToMerchant(Transaction transaction)
-        {
-            var merchantIndex = _merchants.FindIndex(x => x.Name == transaction.MerchantName);
-            _merchants[merchantIndex].LastTransactionWithMonthlyFee = transaction;
-        }
-
-        private bool CheckIfNeedToAddMonthlyFeeToTransaction(Transaction transaction)
-        {
-            var merchantIndex = _merchants.FindIndex(x => x.Name == transaction.MerchantName);
-            var lastMonthlyTransaction = _merchants[merchantIndex].LastTransactionWithMonthlyFee;
-            if (lastMonthlyTransaction == null || CheckIfDateIsNewerForMonthlyFee(lastMonthlyTransaction.Date, transaction.Date))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        private bool CheckIfDateIsNewerForMonthlyFee(DateTimeOffset lastFeeDate, DateTimeOffset transactionDate)
-        {
-            if (lastFeeDate.Year == transactionDate.Year && lastFeeDate.Month < transactionDate.Month)
-            {
-                return true;
-            }
-
-            if (lastFeeDate.Year < transactionDate.Year)
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }

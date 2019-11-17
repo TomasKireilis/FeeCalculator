@@ -1,4 +1,4 @@
-using Homework_Tomas_Kireilis;
+using FeeCalculator;
 using System;
 using Xunit;
 

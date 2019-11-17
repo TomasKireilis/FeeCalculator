@@ -17,19 +17,34 @@ namespace Domain
 
         public decimal DefaultFeeForTransactionValue(string transactionMerchantName="")
         {
-            return GetValueFromSettings($"{DefaultFeeForTransaction}.{transactionMerchantName}");
-        }
-        public decimal MonthlyFeeForTransactionValue()
-        {
-            return GetValueFromSettings(MonthlyFeeForTransaction);
-        }
-        protected decimal GetValueFromSettings(string key)
-        {
-            if (DefaultFees.TryGetValue(key, out decimal value))
+            if(TryGetValueFromSettings($"{DefaultFeeForTransaction}.{transactionMerchantName}",out decimal value))
             {
                 return value;
             }
-            throw new ArgumentException($"{key} was not found in default fees");
+            if (TryGetValueFromSettings($"{DefaultFeeForTransaction}.{transactionMerchantName}",out decimal defaultValue))
+            {
+                return defaultValue;
+            }
+            throw new ArgumentException($"{transactionMerchantName} was not found in default fees");
+        }
+        public decimal MonthlyFeeForTransactionValue()
+        {
+            if (TryGetValueFromSettings(MonthlyFeeForTransaction, out decimal defaultValue))
+            {
+                return defaultValue;
+            }
+            throw new ArgumentException($"{MonthlyFeeForTransaction} was not found in monthly fees");
+        }
+        protected bool TryGetValueFromSettings(string key,out decimal decimalValue)
+        {
+            if (DefaultFees.TryGetValue(key, out decimal value))
+            {
+                decimalValue = value;
+                return true;
+            }
+            decimalValue = 0;
+            return false;
+        
         }
         public static MerchantTransactionFee GetInstance()
         {

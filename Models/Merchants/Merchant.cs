@@ -1,5 +1,6 @@
 ﻿using System;
 using Domain;
+using Fees;
 
 namespace Models.Merchants
 {
@@ -7,11 +8,13 @@ namespace Models.Merchants
     {
         public Transaction LastTransactionWithMonthlyFee { get; set; }
         public string Name { get; set; }
-        public MerchantTransactionFee TransactionFee;
+        public IMerchantTransactionFee TransactionFee;
+        public IFees Fees;
 
-        public Merchant(MerchantTransactionFee transactionFee)
+        public Merchant(IMerchantTransactionFee transactionFee,IFees fees)
         {
             TransactionFee = transactionFee;
+            Fees = fees;
         }
     }
 }
