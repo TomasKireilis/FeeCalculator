@@ -1,2 +1,0 @@
-﻿TELIA    10
-CIRCLE_K 20

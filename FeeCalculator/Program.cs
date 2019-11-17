@@ -1,7 +1,9 @@
-﻿using Homework_Tomas_Kireilis.Interfaces;
+﻿using DtoMapping;
+using Homework_Tomas_Kireilis.Interfaces;
 using Models;
 using System;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace Homework_Tomas_Kireilis
 {
@@ -10,16 +12,16 @@ namespace Homework_Tomas_Kireilis
         private static IReadingFromFile _reader;
         private static IFeeCalculator _feeCalculator;
 
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CalculateFee("transactions.txt", "specialMerchants.txt");
+            await CalculateFee("transactions.txt", "specialMerchants.txt");
         }
 
-        public static void CalculateFee(string transactionPath, string specialMerchantPath)
+        public static async Task CalculateFee(string transactionPath, string specialMerchantPath)
         {
             _reader = new ReadingFromFile(transactionPath, specialMerchantPath);
-            _feeCalculator = new FeeCalculator(new Fees(), 1, _reader.ReadSpecialMerchants(), 29);
-            foreach (var transaction in _reader.ReadTransactions())
+            _feeCalculator = new FeeCalculator(new Mapper(),new MerchantFactory());
+            await foreach (var transaction in  _reader.ReadTransactions())
             {
                 var calculatedTransaction = _feeCalculator.Calculate(transaction);
                 WriteToConsole(calculatedTransaction);

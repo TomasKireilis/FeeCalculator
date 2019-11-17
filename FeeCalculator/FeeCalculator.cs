@@ -1,5 +1,8 @@
-﻿using Homework_Tomas_Kireilis.Interfaces;
+﻿using Domain;
+using DtoMapping;
+using Homework_Tomas_Kireilis.Interfaces;
 using Models;
+using Models.Merchants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,40 +11,29 @@ namespace Homework_Tomas_Kireilis
 {
     public class FeeCalculator : IFeeCalculator
     {
-        private readonly IFees _fees;
-        private readonly decimal _basicTransactionPercentageFee;
-        private readonly decimal _monthlyTransactionPercentageFee;
-        private readonly List<Merchant> _merchants;
-
-        public FeeCalculator(IFees fees, decimal transactionPercentageFee, List<Merchant> merchants, decimal monthlyTransactionPercentageFee)
+        private readonly List<Merchant> _merchants = new List<Merchant>();
+        private readonly IMerchantFactory merchantFactory;
+        public readonly IMapper mapper;
+        public FeeCalculator(IMapper Mapper, IMerchantFactory merchantFactory)
         {
-            _fees = fees;
-            _basicTransactionPercentageFee = transactionPercentageFee;
-            _merchants = merchants;
-            _monthlyTransactionPercentageFee = monthlyTransactionPercentageFee;
+            mapper = Mapper;
+            this.merchantFactory = merchantFactory;
         }
 
         public Transaction Calculate(Transaction transaction)
         {
             var merchant = CheckMerchantValidity(transaction);
-            transaction.BasicFeeAmount =
-                    _fees.TransactionPercentageFee(transaction.Amount, _basicTransactionPercentageFee);
-
-            if (CheckIfNeedToAddMonthlyFeeToTransaction(transaction))
-            {
-                transaction.MonthlyFeeAmount =
-                    _fees.TransactionFixedFee(_monthlyTransactionPercentageFee);
-            }
             if (merchant != null)
             {
-                if (merchant.FeeDiscount != 0)
-                {
-                    transaction.BasicFeeAmount =
-                        _fees.TransactionPercentageFeeDiscount(transaction.BasicFeeAmount, merchant.FeeDiscount);
-                }
+                var calculatedFee = merchant.Fees.CalculateFee(
+                    mapper.MapTransactionToTransationFee(
+                        transaction,
+                        merchant.TransactionFee.DefaultFeeForTransactionValue(merchant.Name),
+                        merchant.TransactionFee.MonthlyFeeForTransactionValue()));
 
+                transaction = mapper.MapTransactionFeeToTransaction(calculatedFee);
                 transaction.BasicFeeAmount = decimal.Round(transaction.BasicFeeAmount, 2);
-                ChangeLastMonthlyTransactionToMerchant(transaction);
+
                 return transaction;
             }
 
@@ -60,55 +52,12 @@ namespace Homework_Tomas_Kireilis
 
             if (merchants.Count == 0)
             {
-                return AddNewMerchant(transaction);
+                var merchant = merchantFactory.CreateMerchant(transaction);
+                _merchants.Add(merchant);
+                return merchant;
             }
 
             return merchants[0];
-        }
-
-        private Merchant AddNewMerchant(Transaction transaction)
-        {
-            var merchant = new Merchant
-            {
-                Name = transaction.MerchantName
-            };
-            _merchants.Add(
-                merchant
-            );
-            return merchant;
-        }
-
-        private void ChangeLastMonthlyTransactionToMerchant(Transaction transaction)
-        {
-            var merchantIndex = _merchants.FindIndex(x => x.Name == transaction.MerchantName);
-            _merchants[merchantIndex].LastTransactionWithMonthlyFee = transaction;
-        }
-
-        private bool CheckIfNeedToAddMonthlyFeeToTransaction(Transaction transaction)
-        {
-            var merchantIndex = _merchants.FindIndex(x => x.Name == transaction.MerchantName);
-            var lastMonthlyTransaction = _merchants[merchantIndex].LastTransactionWithMonthlyFee;
-            if (lastMonthlyTransaction == null || CheckIfDateIsNewerForMonthlyFee(lastMonthlyTransaction.Date, transaction.Date))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        private bool CheckIfDateIsNewerForMonthlyFee(DateTimeOffset lastFeeDate, DateTimeOffset transactionDate)
-        {
-            if (lastFeeDate.Year == transactionDate.Year && lastFeeDate.Month < transactionDate.Month)
-            {
-                return true;
-            }
-
-            if (lastFeeDate.Year < transactionDate.Year)
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }
