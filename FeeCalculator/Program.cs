@@ -1,7 +1,5 @@
-﻿using DtoMapping;
-using Factory;
-using FeeCalculator.Interfaces;
-using Models;
+﻿using Domain.Factories;
+using Repository;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -15,16 +13,19 @@ namespace FeeCalculator
 
         public static async Task Main(string[] args)
         {
-            await CalculateFee("transactions.txt");
+            await CalculateFee();
         }
 
-        public static async Task CalculateFee(string transactionPath)
+        public static async Task CalculateFee()
         {
-            _reader = new ReadingFromFile(transactionPath);
-            _feeCalculator = new FeeCalculator(new Mapper(), new MerchantFactory());
-            await foreach (var transaction in _reader.ReadTransactions())
+            _reader = new ReadingFromFile();
+            _feeCalculator = new FeeCalculator(
+                new MerchantFactory(
+                    _reader,
+                    new FeeFactory()));
+            await foreach (var transaction in _reader.ReadTranslationsFromRepositoryAsync())
             {
-                var calculatedTransaction = _feeCalculator.Calculate(transaction);
+                var calculatedTransaction = await _feeCalculator.Calculate(transaction);
                 WriteToConsole(calculatedTransaction);
             }
         }

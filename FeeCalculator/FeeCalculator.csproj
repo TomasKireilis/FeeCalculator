@@ -7,9 +7,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\DtoMapping\DtoMapping.csproj" />
-    <ProjectReference Include="..\Factory\Factory.csproj" />
-    <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>

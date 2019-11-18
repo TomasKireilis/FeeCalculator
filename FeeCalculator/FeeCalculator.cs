@@ -1,11 +1,10 @@
-﻿using DtoMapping;
-using Factory;
-using FeeCalculator.Interfaces;
-using Models;
-using Models.Merchants;
+﻿using Domain.Factories.Interfaces;
+using Domain.Merchants;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace FeeCalculator
 {
@@ -13,47 +12,37 @@ namespace FeeCalculator
     {
         private readonly List<Merchant> _merchants = new List<Merchant>();
         private readonly IMerchantFactory _merchantFactory;
-        public readonly IMapper Mapper;
 
-        public FeeCalculator(IMapper mapper, IMerchantFactory merchantFactory)
+        public FeeCalculator(IMerchantFactory merchantFactory)
         {
-            Mapper = mapper;
             _merchantFactory = merchantFactory;
         }
 
-        public Transaction Calculate(Transaction transaction)
+        public async Task<Transaction> Calculate(Transaction transaction)
         {
-            var merchant = CheckMerchantValidity(transaction);
+            var merchant = await CreateMerchantIfNotExist(transaction);
             if (merchant != null)
             {
-                var calculatedFee = merchant.Fees.CalculateFee(
-                    Mapper.MapTransactionToTransactionFee(
-                        transaction,
-                        merchant.TransactionFee.DefaultFeeForTransactionValue(merchant.Name),
-                        merchant.TransactionFee.MonthlyFeeForTransactionValue()));
-
-                transaction = Mapper.MapTransactionFeeToTransaction(calculatedFee);
-                transaction.BasicFeeAmount = decimal.Round(transaction.BasicFeeAmount, 2);
-
-                return transaction;
+                var calculatedTransactionWithFee = merchant.CalculateFee(transaction);
+                return calculatedTransactionWithFee;
             }
 
             throw new Exception("Could not calculate fee");
         }
 
-        private Merchant CheckMerchantValidity(Transaction transaction)
+        private async Task<Merchant> CreateMerchantIfNotExist(Transaction transaction)
         {
-            var merchants = _merchants.FindAll(x => x.Name == transaction.MerchantName).ToList();
+            var merchants = _merchants.FindAll(x => x.MerchantInformation.MerchantName == transaction.MerchantName).ToList();
 
             if (merchants.Count > 1)
             {
-                throw new Exception(
-                    $"Found merchants with duplicated names. Could not calculate fee for merchant name :{transaction.MerchantName}");
+                //    throw new Exception(
+                //       $"Found merchants with duplicated names. Could not calculate fee for merchant name :{transaction.MerchantName}");
             }
 
             if (merchants.Count == 0)
             {
-                var merchant = _merchantFactory.CreateMerchant(transaction);
+                var merchant = await _merchantFactory.CreateMerchant(transaction);
                 _merchants.Add(merchant);
                 return merchant;
             }
