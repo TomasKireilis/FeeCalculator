@@ -5,6 +5,6 @@ namespace Domain.Factories.Interfaces
 {
     public interface IMerchantFactory
     {
-        Task<Merchants.Merchant> CreateMerchant(Transaction transaction);
+        Task<Merchants.Merchant> CreateMerchant(Transaction transaction, MerchantInformation merchantInformation);
     }
 }

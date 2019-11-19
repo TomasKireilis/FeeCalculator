@@ -54,8 +54,7 @@ namespace Repository
                     Status = lineObjects[1] == "null" ? _defaultValues.Status : lineObjects[1],
                     BasicFee = lineObjects[2] == "null" ? _defaultValues.BasicFee : decimal.Parse(lineObjects[2], _culture),
                     MonthlyFee = lineObjects[3] == "null" ? _defaultValues.MonthlyFee : decimal.Parse(lineObjects[3], _culture),
-                    BasicFeeDiscount = lineObjects[4] == "null" ? _defaultValues.BasicFeeDiscount : decimal.Parse(lineObjects[4], _culture),
-                     WeeklyFee= lineObjects[5] == "null" ? _defaultValues.WeeklyFee : decimal.Parse(lineObjects[5], _culture)
+                    BasicFeeDiscount = lineObjects[4] == "null" ? _defaultValues.BasicFeeDiscount : decimal.Parse(lineObjects[4], _culture)
                 };
                 yield return merchantInformation;
             }
@@ -84,8 +83,7 @@ namespace Repository
                     Status = lineObjects[1],
                     BasicFee = decimal.Parse(lineObjects[2], _culture),
                     MonthlyFee = decimal.Parse(lineObjects[3], _culture),
-                    BasicFeeDiscount = decimal.Parse(lineObjects[4], _culture),
-                    WeeklyFee = decimal.Parse(lineObjects[5], _culture)
+                    BasicFeeDiscount = decimal.Parse(lineObjects[4], _culture)
                 };
                 break;
             }
