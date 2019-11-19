@@ -16,17 +16,17 @@ namespace AcceptanceTests.StepDefinitions
             {
                 MerchantName = "TELIA",
                 Status = "BIG",
-                BasicFee = 1,
-                BasicFeeDiscount = 10,
-                MonthlyFee = 29
+                TransactionPercentageFee = 1,
+                TransactionPercentageDiscountFee = 10,
+                InvoiceFixedFee = 29
             },
             new MerchantInformation()
             {
                 MerchantName = "CIRCLE_K",
                 Status = "BIG",
-                BasicFee = 1,
-                BasicFeeDiscount = 20,
-                MonthlyFee = 29
+                TransactionPercentageFee = 1,
+                TransactionPercentageDiscountFee = 20,
+                InvoiceFixedFee = 29
             }
         };
 
@@ -34,9 +34,9 @@ namespace AcceptanceTests.StepDefinitions
         {
             MerchantName = "DEFAULT",
             Status = "DEFAULT",
-            BasicFee = 1,
-            BasicFeeDiscount = 0,
-            MonthlyFee = 29
+            TransactionPercentageFee = 1,
+            TransactionPercentageDiscountFee = 0,
+            InvoiceFixedFee = 29
         };
 
         [Given(@"Merchant repository is populated with Transaction Percentage Fee Discount business logic")]

@@ -52,9 +52,9 @@ namespace Repository
                 {
                     MerchantName = lineObjects[0],
                     Status = lineObjects[1] == "NULL" ? _defaultValues.Status : lineObjects[1],
-                    BasicFee = lineObjects[2] == "NULL" ? _defaultValues.BasicFee : decimal.Parse(lineObjects[2], _culture),
-                    MonthlyFee = lineObjects[3] == "NULL" ? _defaultValues.MonthlyFee : decimal.Parse(lineObjects[3], _culture),
-                    BasicFeeDiscount = lineObjects[4] == "NULL" ? _defaultValues.BasicFeeDiscount : decimal.Parse(lineObjects[4], _culture)
+                    TransactionPercentageFee = lineObjects[2] == "NULL" ? _defaultValues.TransactionPercentageFee : decimal.Parse(lineObjects[2], _culture),
+                    InvoiceFixedFee = lineObjects[3] == "NULL" ? _defaultValues.InvoiceFixedFee : decimal.Parse(lineObjects[3], _culture),
+                    TransactionPercentageDiscountFee = lineObjects[4] == "NULL" ? _defaultValues.TransactionPercentageDiscountFee : decimal.Parse(lineObjects[4], _culture)
                 };
                 yield return merchantInformation;
             }
@@ -81,9 +81,9 @@ namespace Repository
                 {
                     MerchantName = lineObjects[0],
                     Status = lineObjects[1],
-                    BasicFee = decimal.Parse(lineObjects[2], _culture),
-                    MonthlyFee = decimal.Parse(lineObjects[3], _culture),
-                    BasicFeeDiscount = decimal.Parse(lineObjects[4], _culture)
+                    TransactionPercentageFee = decimal.Parse(lineObjects[2], _culture),
+                    InvoiceFixedFee = decimal.Parse(lineObjects[3], _culture),
+                    TransactionPercentageDiscountFee = decimal.Parse(lineObjects[4], _culture)
                 };
                 break;
             }
@@ -91,7 +91,7 @@ namespace Repository
             file.Close();
         }
 
-        private List<string> ClearInput(List<string> values)
+        private List<string> ClearInput(IEnumerable<string> values)
         {
             var returnValues = new List<string>();
             foreach (var value in values)

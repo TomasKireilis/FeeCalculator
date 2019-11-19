@@ -9,8 +9,8 @@ namespace Domain.Factories
     {
         protected List<IFee> RegisteredFees = new List<IFee>()
         {
-            new BasicFee(),
-            new MonthlyFee()
+            new TransactionPercentageFee(),
+            new InvoiceFixedFee()
         };
 
         public List<IFee> AddFee()

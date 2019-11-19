@@ -1,4 +1,4 @@
-﻿Feature: TransactionPercentageFeeDiscount		
+﻿Feature: TransactionPercentageDiscountFee		
 		As a MobilePay accountant I want (TELIA 10% dicount for transaction, CIRCLE_K 20% dicount for transaction) to get Transaction Percentage Fee Discount,
 		so that MobilePay would be more attractive to big merchants
 

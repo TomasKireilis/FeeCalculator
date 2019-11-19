@@ -35,7 +35,7 @@ namespace FeeCalculator
             Console.WriteLine(
                 $"{calculatedTransaction.Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}" +
                 $" {calculatedTransaction.MerchantName}" +
-                $" {(calculatedTransaction.BasicFeeAmount + calculatedTransaction.MonthlyFeeAmount).ToString("0.00", Culture)}");
+                $" {(calculatedTransaction.TransactionPercentageFeeAmount + calculatedTransaction.InvoiceFixedFeeAmount).ToString("0.00", Culture)}");
         }
     }
 }

@@ -19,7 +19,7 @@ namespace AcceptanceTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class TransactionPercentageFeeDiscountFeature : Xunit.IClassFixture<TransactionPercentageFeeDiscountFeature.FixtureData>, System.IDisposable
+    public partial class TransactionPercentageDiscountFeeFeature : Xunit.IClassFixture<TransactionPercentageDiscountFeeFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -28,10 +28,10 @@ namespace AcceptanceTests.Features
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "TransactionPercentageFeeCircleKDiscount.Feature"
+#line 1 "TransactionPercentageDiscountFee.Feature"
 #line hidden
         
-        public TransactionPercentageFeeDiscountFeature(TransactionPercentageFeeDiscountFeature.FixtureData fixtureData, AcceptanceTests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public TransactionPercentageDiscountFeeFeature(TransactionPercentageDiscountFeeFeature.FixtureData fixtureData, AcceptanceTests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,7 +40,7 @@ namespace AcceptanceTests.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "TransactionPercentageFeeDiscount", "\t\tAs a MobilePay accountant I want (TELIA 10% dicount for transaction, CIRCLE_K 2" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "TransactionPercentageDiscountFee", "\t\tAs a MobilePay accountant I want (TELIA 10% dicount for transaction, CIRCLE_K 2" +
                     "0% dicount for transaction) to get Transaction Percentage Fee Discount,\r\n\t\tso th" +
                     "at MobilePay would be more attractive to big merchants", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
@@ -83,7 +83,7 @@ namespace AcceptanceTests.Features
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="CalculateTransactionPercentageFeeDiscountForCircleK")]
-        [Xunit.TraitAttribute("FeatureTitle", "TransactionPercentageFeeDiscount")]
+        [Xunit.TraitAttribute("FeatureTitle", "TransactionPercentageDiscountFee")]
         [Xunit.TraitAttribute("Description", "CalculateTransactionPercentageFeeDiscountForCircleK")]
         public virtual void CalculateTransactionPercentageFeeDiscountForCircleK()
         {
@@ -113,51 +113,51 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("Merchant repository is populated with Transaction Percentage Fee Discount busines" +
                         "s logic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date",
                             "MerchantName",
                             "Amount"});
-                table5.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "2018-09-02",
                             "CIRCLE_K",
                             "120"});
-                table5.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "2018-09-04",
                             "CIRCLE_K",
                             "200"});
-                table5.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "2018-10-22",
                             "CIRCLE_K",
                             "300"});
-                table5.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "2018-10-29",
                             "CIRCLE_K",
                             "150"});
 #line 7
-testRunner.Given("that transactions where made", ((string)(null)), table5, "Given ");
+testRunner.Given("that transactions where made", ((string)(null)), table3, "Given ");
 #line hidden
 #line 13
 testRunner.When("fees calculation app is executed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "FeeAmount"});
-                table6.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "0.96"});
-                table6.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "1.60"});
-                table6.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "2.40"});
-                table6.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "1.20"});
 #line 14
-testRunner.Then("the output for Transaction Percentage Fee is", ((string)(null)), table6, "Then ");
+testRunner.Then("the output for Transaction Percentage Fee is", ((string)(null)), table4, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="CalculateTransactionPercentageFeeDiscountForTelia")]
-        [Xunit.TraitAttribute("FeatureTitle", "TransactionPercentageFeeDiscount")]
+        [Xunit.TraitAttribute("FeatureTitle", "TransactionPercentageDiscountFee")]
         [Xunit.TraitAttribute("Description", "CalculateTransactionPercentageFeeDiscountForTelia")]
         public virtual void CalculateTransactionPercentageFeeDiscountForTelia()
         {
@@ -187,44 +187,44 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("Merchant repository is populated with Transaction Percentage Fee Discount busines" +
                         "s logic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date",
                             "MerchantName",
                             "Amount"});
-                table7.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "2018-09-02",
                             "TELIA",
                             "120"});
-                table7.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "2018-09-04",
                             "TELIA",
                             "200"});
-                table7.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "2018-10-22",
                             "TELIA",
                             "300"});
-                table7.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "2018-10-29",
                             "TELIA",
                             "150"});
 #line 23
-testRunner.Given("that transactions where made", ((string)(null)), table7, "Given ");
+testRunner.Given("that transactions where made", ((string)(null)), table5, "Given ");
 #line hidden
 #line 29
 testRunner.When("fees calculation app is executed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "FeeAmount"});
-                table8.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "1.08"});
-                table8.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "1.80"});
-                table8.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "2.70"});
-                table8.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "1.35"});
 #line 30
-testRunner.Then("the output for Transaction Percentage Fee is", ((string)(null)), table8, "Then ");
+testRunner.Then("the output for Transaction Percentage Fee is", ((string)(null)), table6, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -237,12 +237,12 @@ testRunner.Then("the output for Transaction Percentage Fee is", ((string)(null))
             
             public FixtureData()
             {
-                TransactionPercentageFeeDiscountFeature.FeatureSetup();
+                TransactionPercentageDiscountFeeFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                TransactionPercentageFeeDiscountFeature.FeatureTearDown();
+                TransactionPercentageDiscountFeeFeature.FeatureTearDown();
             }
         }
     }

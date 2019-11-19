@@ -4,9 +4,9 @@ using System;
 
 namespace Domain.Fees
 {
-    internal class MonthlyFee : IFee
+    internal class InvoiceFixedFee : IFee
     {
-        public DateTimeOffset LastMonthlyFee;
+        public DateTimeOffset InvoiceFixedFeeDate;
 
         public Transaction Calculate(Transaction transaction, MerchantInformation merchantInformation)
         {
@@ -14,14 +14,14 @@ namespace Domain.Fees
             {
                 return transaction;
             }
-            transaction.MonthlyFeeAmount += merchantInformation.MonthlyFee;
-            LastMonthlyFee = transaction.Date;
+            transaction.InvoiceFixedFeeAmount += merchantInformation.InvoiceFixedFee;
+            InvoiceFixedFeeDate = transaction.Date;
             return transaction;
         }
 
         private bool NeedToCalculate(Transaction transaction)
         {
-            if (CheckIfDateIsNewerForMonthlyFee(transaction.Date) && transaction.BasicFeeAmount > 0)
+            if (CheckIfDateIsNewerForMonthlyFee(transaction.Date) && transaction.TransactionPercentageFeeAmount > 0)
             {
                 return true;
             }
@@ -31,12 +31,12 @@ namespace Domain.Fees
 
         private bool CheckIfDateIsNewerForMonthlyFee(DateTimeOffset transactionDate)
         {
-            if (LastMonthlyFee.Year == transactionDate.Year && LastMonthlyFee.Month < transactionDate.Month)
+            if (InvoiceFixedFeeDate.Year == transactionDate.Year && InvoiceFixedFeeDate.Month < transactionDate.Month)
             {
                 return true;
             }
 
-            if (LastMonthlyFee.Year < transactionDate.Year)
+            if (InvoiceFixedFeeDate.Year < transactionDate.Year)
             {
                 return true;
             }

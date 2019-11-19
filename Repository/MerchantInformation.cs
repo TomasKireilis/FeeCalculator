@@ -4,9 +4,9 @@
     {
         public string MerchantName { get; set; }
         public string Status { get; set; }
-        public decimal BasicFee { get; set; }
-        public decimal BasicFeeDiscount { get; set; }
-        public decimal MonthlyFee { get; set; }
+        public decimal TransactionPercentageFee { get; set; }
+        public decimal TransactionPercentageDiscountFee { get; set; }
+        public decimal InvoiceFixedFee { get; set; }
 
         public MerchantInformation Clone()
         {

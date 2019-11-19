@@ -21,8 +21,8 @@ namespace Domain.Merchants
             {
                 transaction = fee.Calculate(transaction, MerchantInformation);
             }
-            transaction.BasicFeeAmount = decimal.Round(transaction.BasicFeeAmount, 2);
-            transaction.MonthlyFeeAmount = decimal.Round(transaction.MonthlyFeeAmount, 2);
+            transaction.TransactionPercentageFeeAmount = decimal.Round(transaction.TransactionPercentageFeeAmount, 2);
+            transaction.InvoiceFixedFeeAmount = decimal.Round(transaction.InvoiceFixedFeeAmount, 2);
             return transaction;
         }
     }

@@ -23,9 +23,9 @@ namespace AcceptanceTests.StepDefinitions
         {
             MerchantName = "DEFAULT",
             Status = "DEFAULT",
-            BasicFee = 1,
-            BasicFeeDiscount = 0,
-            MonthlyFee = 29
+            TransactionPercentageFee = 1,
+            TransactionPercentageDiscountFee = 0,
+            InvoiceFixedFee = 29
         };
 
         [Given(@"Merchant repository is populated with Transaction Percentage Fee business logic")]
@@ -76,7 +76,7 @@ namespace AcceptanceTests.StepDefinitions
             var counter = 0;
             foreach (var fee in (List<Transaction>)ScenarioContext["CalculatedFees"])
             {
-                Assert.Equal(fees[counter], fee.BasicFeeAmount);
+                Assert.Equal(fees[counter], fee.TransactionPercentageFeeAmount);
                 counter++;
             }
         }

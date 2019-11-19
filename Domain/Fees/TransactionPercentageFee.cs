@@ -3,12 +3,11 @@ using Repository;
 
 namespace Domain.Fees
 {
-    internal class BasicFeeDiscount : IFee
+    internal class TransactionPercentageFee : IFee
     {
         public Transaction Calculate(Transaction transaction, MerchantInformation merchantInformation)
         {
-            transaction.BasicFeeAmount -=
-                  (transaction.BasicFeeAmount / 100 * merchantInformation.BasicFeeDiscount);
+            transaction.TransactionPercentageFeeAmount = transaction.Amount * (merchantInformation.TransactionPercentageFee / 100);
             return transaction;
         }
     }

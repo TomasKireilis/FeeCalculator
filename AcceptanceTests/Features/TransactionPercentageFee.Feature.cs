@@ -112,44 +112,44 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
 testRunner.Given("Merchant repository is populated with Transaction Percentage Fee business logic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date",
                             "MerchantName",
                             "Amount"});
-                table3.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "2018-09-02",
                             "CIRCLE_K",
                             "120"});
-                table3.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "2018-09-04",
                             "TELIA",
                             "200"});
-                table3.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "2018-10-22",
                             "CIRCLE_K",
                             "300"});
-                table3.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "2018-10-29",
                             "CIRCLE_K",
                             "150"});
 #line 8
-testRunner.Given("that transactions where made", ((string)(null)), table3, "Given ");
+testRunner.Given("that transactions where made", ((string)(null)), table7, "Given ");
 #line hidden
 #line 14
 testRunner.When("fees calculation app is executed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "FeeAmount"});
-                table4.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "1.20"});
-                table4.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "2.00"});
-                table4.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "3.00"});
-                table4.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "1.50"});
 #line 15
-testRunner.Then("the output for Transaction Percentage Fee is", ((string)(null)), table4, "Then ");
+testRunner.Then("the output for Transaction Percentage Fee is", ((string)(null)), table8, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

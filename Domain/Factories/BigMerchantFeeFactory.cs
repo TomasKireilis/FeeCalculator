@@ -13,9 +13,9 @@ namespace Domain.Factories
 
         protected new List<IFee> RegisteredFees = new List<IFee>()
         {
-            new BasicFee(),
-            new BasicFeeDiscount(),
-            new MonthlyFee()
+            new TransactionPercentageFee(),
+            new TransactionPercentageDiscountFee(),
+            new InvoiceFixedFee()
         };
     }
 }

@@ -20,17 +20,17 @@ namespace AcceptanceTests.StepDefinitions
             {
                 MerchantName = "TELIA",
                 Status = "BIG",
-                BasicFee = 1,
-                BasicFeeDiscount = 10,
-                MonthlyFee = 29
+                TransactionPercentageFee = 1,
+                TransactionPercentageDiscountFee = 10,
+                InvoiceFixedFee = 29
             },
             new MerchantInformation()
             {
                 MerchantName = "CIRCLE_K",
                 Status = "BIG",
-                BasicFee = 1,
-                BasicFeeDiscount = 20,
-                MonthlyFee = 29
+                TransactionPercentageFee = 1,
+                TransactionPercentageDiscountFee = 20,
+                InvoiceFixedFee = 29
             }
         };
 
@@ -38,9 +38,9 @@ namespace AcceptanceTests.StepDefinitions
         {
             MerchantName = "DEFAULT",
             Status = "DEFAULT",
-            BasicFee = 1,
-            BasicFeeDiscount = 0,
-            MonthlyFee = 29
+            TransactionPercentageFee = 1,
+            TransactionPercentageDiscountFee = 0,
+            InvoiceFixedFee = 29
         };
 
         [Given(@"Merchant repository is populated with Invoice Fixed Fee business logic")]
@@ -59,7 +59,7 @@ namespace AcceptanceTests.StepDefinitions
             var counter = 0;
             foreach (var fee in (List<Transaction>)ScenarioContext["CalculatedFees"])
             {
-                Assert.Equal(fees[counter], fee.BasicFeeAmount + fee.MonthlyFeeAmount);
+                Assert.Equal(fees[counter], fee.TransactionPercentageFeeAmount + fee.InvoiceFixedFeeAmount);
                 counter++;
             }
         }
