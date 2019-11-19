@@ -132,10 +132,14 @@ testRunner.Given("Merchant repository is populated with Invoice Fixed Fee busine
                             "2018-10-29",
                             "7-ELEVEN",
                             "150"});
+                table1.AddRow(new string[] {
+                            "2018-10-29",
+                            "TELIA",
+                            "150"});
 #line 7
 testRunner.Given("that transactions where made", ((string)(null)), table1, "Given ");
 #line hidden
-#line 13
+#line 14
 testRunner.When("fees calculation app is executed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -148,7 +152,9 @@ testRunner.When("fees calculation app is executed", ((string)(null)), ((TechTalk
                             "32.00"});
                 table2.AddRow(new string[] {
                             "1.50"});
-#line 14
+                table2.AddRow(new string[] {
+                            "30.35"});
+#line 15
 testRunner.Then("the output for Invoice Fixed Fee is", ((string)(null)), table2, "Then ");
 #line hidden
             }

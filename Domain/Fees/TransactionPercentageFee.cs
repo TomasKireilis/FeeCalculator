@@ -3,7 +3,7 @@ using Repository;
 
 namespace Domain.Fees
 {
-    internal class TransactionPercentageFee : IFee
+    public class TransactionPercentageFee : IFee
     {
         public Transaction Calculate(Transaction transaction, MerchantInformation merchantInformation)
         {

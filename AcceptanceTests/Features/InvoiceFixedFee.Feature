@@ -10,6 +10,7 @@ Given that transactions where made
 | 2018-09-04 | NETTO        | 200    |
 | 2018-10-22 | 7-ELEVEN     | 300    |
 | 2018-10-29 | 7-ELEVEN     | 150    |
+| 2018-10-29 | TELIA        | 150    |
 When fees calculation app is executed
 Then the output for Invoice Fixed Fee is
 | FeeAmount |
@@ -17,3 +18,4 @@ Then the output for Invoice Fixed Fee is
 | 31.00     |
 | 32.00     |
 | 1.50      |
+| 30.35      |

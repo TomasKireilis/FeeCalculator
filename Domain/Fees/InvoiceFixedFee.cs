@@ -4,9 +4,9 @@ using System;
 
 namespace Domain.Fees
 {
-    internal class InvoiceFixedFee : IFee
+    public class InvoiceFixedFee : IFee
     {
-        public DateTimeOffset InvoiceFixedFeeDate;
+        public DateTimeOffset LastInvoiceFixedFeeDate;
 
         public Transaction Calculate(Transaction transaction, MerchantInformation merchantInformation)
         {
@@ -15,7 +15,7 @@ namespace Domain.Fees
                 return transaction;
             }
             transaction.InvoiceFixedFeeAmount += merchantInformation.InvoiceFixedFee;
-            InvoiceFixedFeeDate = transaction.Date;
+            LastInvoiceFixedFeeDate = transaction.Date;
             return transaction;
         }
 
@@ -31,12 +31,12 @@ namespace Domain.Fees
 
         private bool CheckIfDateIsNewerForMonthlyFee(DateTimeOffset transactionDate)
         {
-            if (InvoiceFixedFeeDate.Year == transactionDate.Year && InvoiceFixedFeeDate.Month < transactionDate.Month)
+            if (LastInvoiceFixedFeeDate.Year == transactionDate.Year && LastInvoiceFixedFeeDate.Month < transactionDate.Month)
             {
                 return true;
             }
 
-            if (InvoiceFixedFeeDate.Year < transactionDate.Year)
+            if (LastInvoiceFixedFeeDate.Year < transactionDate.Year)
             {
                 return true;
             }
