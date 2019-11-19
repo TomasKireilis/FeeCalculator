@@ -12,10 +12,12 @@ namespace FeeCalculator
     {
         private readonly List<Merchant> _merchants = new List<Merchant>();
         private readonly IMerchantFactory _merchantFactory;
+        private readonly IReadingFromFile _readingFromFile;
 
-        public FeeCalculator(IMerchantFactory merchantFactory)
+        public FeeCalculator(IMerchantFactory merchantFactory, IReadingFromFile readingFromFile)
         {
             _merchantFactory = merchantFactory;
+            _readingFromFile = readingFromFile;
         }
 
         public async Task<Transaction> Calculate(Transaction transaction)
@@ -36,18 +38,31 @@ namespace FeeCalculator
 
             if (merchants.Count > 1)
             {
-                    throw new Exception(
-                       $"Found merchants with duplicated names. Could not calculate fee for merchant name :{transaction.MerchantName}");
+                throw new Exception(
+                   $"Found merchants with duplicated names. Could not calculate fee for merchant name :{transaction.MerchantName}");
             }
 
             if (merchants.Count == 0)
             {
-                var merchant = await _merchantFactory.CreateMerchant(transaction);
+                var merchant = await _merchantFactory.CreateMerchant(transaction, await GetMerchantInfo(transaction));
                 _merchants.Add(merchant);
                 return merchant;
             }
 
             return merchants[0];
+        }
+
+        private async Task<MerchantInformation> GetMerchantInfo(Transaction transaction)
+        {
+            await foreach (var merchant in _readingFromFile.ReadMerchantsFromRepositoryAsync())
+            {
+                if (merchant.MerchantName == transaction.MerchantName)
+                {
+                    return merchant;
+                }
+            }
+
+            return _readingFromFile.GetMerchantDefaultValues(transaction.MerchantName);
         }
     }
 }
