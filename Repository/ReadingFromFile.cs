@@ -63,7 +63,7 @@ namespace Repository
 
         public MerchantInformation GetMerchantDefaultValues(string merchantName)
         {
-            var merchantInformation = _defaultValues;
+            var merchantInformation = _defaultValues.Clone();
             merchantInformation.MerchantName = merchantName;
             return merchantInformation;
         }

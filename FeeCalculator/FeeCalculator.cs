@@ -36,8 +36,8 @@ namespace FeeCalculator
 
             if (merchants.Count > 1)
             {
-                //    throw new Exception(
-                //       $"Found merchants with duplicated names. Could not calculate fee for merchant name :{transaction.MerchantName}");
+                    throw new Exception(
+                       $"Found merchants with duplicated names. Could not calculate fee for merchant name :{transaction.MerchantName}");
             }
 
             if (merchants.Count == 0)
