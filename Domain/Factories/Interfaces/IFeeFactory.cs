@@ -4,6 +4,6 @@ namespace Domain.Factories.Interfaces
 {
     public interface IFeeFactory
     {
-        IMerchantFeeFactory CreateMerchantFeeFactory(MerchantType merchantType);
+        IMerchantFeeFactory CreateMerchantFeeFactory(MerchantStatus merchantStatus);
     }
 }

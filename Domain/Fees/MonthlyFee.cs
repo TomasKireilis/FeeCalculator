@@ -8,21 +8,25 @@ namespace Domain.Fees
     {
         public DateTimeOffset LastMonthlyFee;
 
-        public bool NeedToCalculate(Transaction transaction, MerchantInformation merchantInformation)
+        public Transaction Calculate(Transaction transaction, MerchantInformation merchantInformation)
         {
-            if (CheckIfDateIsNewerForMonthlyFee(transaction.Date))
+            if (!NeedToCalculate(transaction))
+            {
+                return transaction;
+            }
+            transaction.MonthlyFeeAmount += merchantInformation.MonthlyFee;
+            LastMonthlyFee = transaction.Date;
+            return transaction;
+        }
+
+        private bool NeedToCalculate(Transaction transaction)
+        {
+            if (CheckIfDateIsNewerForMonthlyFee(transaction.Date) && transaction.BasicFeeAmount > 0)
             {
                 return true;
             }
 
             return false;
-        }
-
-        public Transaction Calculate(Transaction transaction, MerchantInformation merchantInformation)
-        {
-            transaction.MonthlyFeeAmount += merchantInformation.MonthlyFee;
-            LastMonthlyFee = transaction.Date;
-            return transaction;
         }
 
         private bool CheckIfDateIsNewerForMonthlyFee(DateTimeOffset transactionDate)

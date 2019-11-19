@@ -19,7 +19,7 @@ namespace AcceptanceTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class TransactionPercentageFeeFeature : Xunit.IClassFixture<TransactionPercentageFeeFeature.FixtureData>, System.IDisposable
+    public partial class InvoiceFixedFeeFeature : Xunit.IClassFixture<InvoiceFixedFeeFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -28,10 +28,10 @@ namespace AcceptanceTests.Features
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "TransactionPercentageFee.Feature"
+#line 1 "InvoiceFixedFee.Feature"
 #line hidden
         
-        public TransactionPercentageFeeFeature(TransactionPercentageFeeFeature.FixtureData fixtureData, AcceptanceTests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public InvoiceFixedFeeFeature(InvoiceFixedFeeFeature.FixtureData fixtureData, AcceptanceTests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,9 +40,9 @@ namespace AcceptanceTests.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "TransactionPercentageFee", "\t\tAs a MobilePay accountant I want merchants to be charged Transaction Percentage" +
-                    " Fee (1% of transaction \r\n\t\tamount), so that MobilePay would still be cheapest s" +
-                    "olution in the market and we could earn enough money\r\n\t\tto cover our expenses", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "InvoiceFixedFee", "\t\tAs a MobilePay accountant I want charge merchants Invoice Fixed Fee (29 DKK) ev" +
+                    "ery month,\r\n\t\tso that we could cover our expenses for sending physical invoices " +
+                    "to merchants", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -82,14 +82,14 @@ namespace AcceptanceTests.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="CalculateTransactionPercentageFee")]
-        [Xunit.TraitAttribute("FeatureTitle", "TransactionPercentageFee")]
-        [Xunit.TraitAttribute("Description", "CalculateTransactionPercentageFee")]
-        public virtual void CalculateTransactionPercentageFee()
+        [Xunit.SkippableFactAttribute(DisplayName="CalculateInvoiceFixedFee")]
+        [Xunit.TraitAttribute("FeatureTitle", "InvoiceFixedFee")]
+        [Xunit.TraitAttribute("Description", "CalculateInvoiceFixedFee")]
+        public virtual void CalculateInvoiceFixedFee()
         {
             string[] tagsOfScenario = ((string[])(null));
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CalculateTransactionPercentageFee", null, ((string[])(null)));
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CalculateInvoiceFixedFee", null, ((string[])(null)));
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -109,47 +109,47 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
-testRunner.Given("Merchant repository is populated with Transaction Percentage Fee business logic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
+testRunner.Given("Merchant repository is populated with Invoice Fixed Fee business logic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date",
                             "MerchantName",
                             "Amount"});
-                table3.AddRow(new string[] {
+                table1.AddRow(new string[] {
                             "2018-09-02",
-                            "CIRCLE_K",
+                            "7-ELEVEN",
                             "120"});
-                table3.AddRow(new string[] {
+                table1.AddRow(new string[] {
                             "2018-09-04",
-                            "TELIA",
+                            "NETTO",
                             "200"});
-                table3.AddRow(new string[] {
+                table1.AddRow(new string[] {
                             "2018-10-22",
-                            "CIRCLE_K",
+                            "7-ELEVEN",
                             "300"});
-                table3.AddRow(new string[] {
+                table1.AddRow(new string[] {
                             "2018-10-29",
-                            "CIRCLE_K",
+                            "7-ELEVEN",
                             "150"});
-#line 8
-testRunner.Given("that transactions where made", ((string)(null)), table3, "Given ");
+#line 7
+testRunner.Given("that transactions where made", ((string)(null)), table1, "Given ");
 #line hidden
-#line 14
+#line 13
 testRunner.When("fees calculation app is executed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "FeeAmount"});
-                table4.AddRow(new string[] {
-                            "1.20"});
-                table4.AddRow(new string[] {
-                            "2.00"});
-                table4.AddRow(new string[] {
-                            "3.00"});
-                table4.AddRow(new string[] {
+                table2.AddRow(new string[] {
+                            "30.20"});
+                table2.AddRow(new string[] {
+                            "31.00"});
+                table2.AddRow(new string[] {
+                            "32.00"});
+                table2.AddRow(new string[] {
                             "1.50"});
-#line 15
-testRunner.Then("the output for Transaction Percentage Fee is", ((string)(null)), table4, "Then ");
+#line 14
+testRunner.Then("the output for Invoice Fixed Fee is", ((string)(null)), table2, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -162,12 +162,12 @@ testRunner.Then("the output for Transaction Percentage Fee is", ((string)(null))
             
             public FixtureData()
             {
-                TransactionPercentageFeeFeature.FeatureSetup();
+                InvoiceFixedFeeFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                TransactionPercentageFeeFeature.FeatureTearDown();
+                InvoiceFixedFeeFeature.FeatureTearDown();
             }
         }
     }

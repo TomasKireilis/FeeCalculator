@@ -1,11 +1,10 @@
-﻿using Repository;
+﻿using Domain.Enum;
+using Repository;
 
 namespace Domain.MerchantTypeRules
 {
     public class BigMerchantValidation
     {
-        public const string BigMerchantStatus = "Big";
-
         public bool ItIsBigMerchant(MerchantInformation merchantInformation)
         {
             return ByDefaultMerchantStatus(merchantInformation);
@@ -13,7 +12,7 @@ namespace Domain.MerchantTypeRules
 
         private bool ByDefaultMerchantStatus(MerchantInformation merchantInformation)
         {
-            if (merchantInformation.Status == BigMerchantStatus)
+            if (merchantInformation.Status == MerchantStatus.Big.ToString().ToUpper())
             {
                 return true;
             }

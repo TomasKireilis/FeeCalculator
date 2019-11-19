@@ -7,9 +7,10 @@
         public decimal BasicFee { get; set; }
         public decimal BasicFeeDiscount { get; set; }
         public decimal MonthlyFee { get; set; }
+
         public MerchantInformation Clone()
         {
-            return (MerchantInformation) MemberwiseClone();
+            return (MerchantInformation)MemberwiseClone();
         }
     }
 }

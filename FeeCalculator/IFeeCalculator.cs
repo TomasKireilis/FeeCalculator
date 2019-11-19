@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Repository;
+﻿using Repository;
+using System.Threading.Tasks;
 
 namespace FeeCalculator
 {

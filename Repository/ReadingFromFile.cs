@@ -43,7 +43,7 @@ namespace Repository
         {
             string line;
             StreamReader file = new StreamReader(MerchantPath);
-            
+
             while ((line = await file.ReadLineAsync()) != null)
             {
                 var lineObjects = line.Split(' ').ToList();
@@ -51,10 +51,10 @@ namespace Repository
                 var merchantInformation = new MerchantInformation()
                 {
                     MerchantName = lineObjects[0],
-                    Status = lineObjects[1] == "null" ? _defaultValues.Status : lineObjects[1],
-                    BasicFee = lineObjects[2] == "null" ? _defaultValues.BasicFee : decimal.Parse(lineObjects[2], _culture),
-                    MonthlyFee = lineObjects[3] == "null" ? _defaultValues.MonthlyFee : decimal.Parse(lineObjects[3], _culture),
-                    BasicFeeDiscount = lineObjects[4] == "null" ? _defaultValues.BasicFeeDiscount : decimal.Parse(lineObjects[4], _culture)
+                    Status = lineObjects[1] == "NULL" ? _defaultValues.Status : lineObjects[1],
+                    BasicFee = lineObjects[2] == "NULL" ? _defaultValues.BasicFee : decimal.Parse(lineObjects[2], _culture),
+                    MonthlyFee = lineObjects[3] == "NULL" ? _defaultValues.MonthlyFee : decimal.Parse(lineObjects[3], _culture),
+                    BasicFeeDiscount = lineObjects[4] == "NULL" ? _defaultValues.BasicFeeDiscount : decimal.Parse(lineObjects[4], _culture)
                 };
                 yield return merchantInformation;
             }

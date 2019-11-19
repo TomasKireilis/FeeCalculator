@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Domain.Fees;
+﻿using Domain.Fees;
 using Domain.Interfaces;
+using System.Collections.Generic;
 
 namespace Domain.Factories
 {
@@ -8,11 +8,14 @@ namespace Domain.Factories
     {
         public BigMerchantFeeFactory()
         {
-            base.RegisteredFees.AddRange(RegisteredFees);
+            base.RegisteredFees = RegisteredFees;
         }
+
         protected new List<IFee> RegisteredFees = new List<IFee>()
         {
+            new BasicFee(),
             new BasicFeeDiscount(),
+            new MonthlyFee()
         };
     }
 }

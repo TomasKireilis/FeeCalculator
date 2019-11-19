@@ -1,10 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\TransactionPercentageFee - Copy (2).Feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\TransactionPercentageFee - Copy.Feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\TransactionPercentageFeeTeliaDiscount - Copy.Feature.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoFixture.AutoMoq" Version="4.11.0" />
@@ -27,6 +33,26 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\FeeCalculator\FeeCalculator.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Features\InvoiceFixedFee.Feature.cs">
+      <DependentUpon>InvoiceFixedFee.Feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\TransactionPercentageFeeCircleKDiscount.Feature.cs">
+      <DependentUpon>TransactionPercentageFeeCircleKDiscount.Feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Features\InvoiceFixedFee.Feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\TransactionPercentageFeeCircleKDiscount.Feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>

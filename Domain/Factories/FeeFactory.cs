@@ -6,18 +6,18 @@ namespace Domain.Factories
 {
     public class FeeFactory : IFeeFactory
     {
-        public IMerchantFeeFactory CreateMerchantFeeFactory(MerchantType merchantType)
+        public IMerchantFeeFactory CreateMerchantFeeFactory(MerchantStatus merchantStatus)
         {
-            switch (merchantType)
+            switch (merchantStatus)
             {
-                case MerchantType.Default:
+                case MerchantStatus.Default:
                     return new MerchantFeeFactory();
 
-                case MerchantType.Big:
+                case MerchantStatus.Big:
                     return new BigMerchantFeeFactory();
 
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(merchantType), merchantType, null);
+                    throw new ArgumentOutOfRangeException(nameof(merchantStatus), merchantStatus, null);
             }
         }
     }

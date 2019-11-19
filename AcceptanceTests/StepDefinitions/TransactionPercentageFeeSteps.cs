@@ -1,4 +1,4 @@
-﻿using AcceptanceTests.Constants;
+﻿using AcceptanceTests.Classes;
 using Domain.Factories;
 using Moq;
 using Repository;
@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoFixture;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using Xunit;
@@ -14,7 +13,7 @@ using Xunit;
 namespace AcceptanceTests.StepDefinitions
 {
     [Binding]
-    public class TransactionPercentageFeeSteps : Steps
+    public partial class TransactionPercentageFeeSteps : Steps
     {
         private readonly CultureInfo _culture = new CultureInfo("en-US");
 
@@ -22,19 +21,19 @@ namespace AcceptanceTests.StepDefinitions
 
         private readonly MerchantInformation _defaultMerchantInformation = new MerchantInformation()
         {
-            MerchantName = "default",
-            Status = "default",
+            MerchantName = "DEFAULT",
+            Status = "DEFAULT",
             BasicFee = 1,
             BasicFeeDiscount = 0,
             MonthlyFee = 29
         };
 
-        public TransactionPercentageFeeSteps()
+        [Given(@"Merchant repository is populated with Transaction Percentage Fee business logic")]
+        public void MerchantRepositoryIsPopulateWithTransactionPercentageFeeBusinessLogic()
+
         {
-            TestContext.Merchants = _merchantInformation;
-            TestContext.TransactionFees = new List<decimal>();
-            TestContext.Transaction = new List<Transaction>();
-            TestContext.DefaultMerchant = _defaultMerchantInformation;
+            ScenarioContext.Add("DefaultMerchantInformation", _defaultMerchantInformation);
+            ScenarioContext.Add("MerchantInformation", _merchantInformation);
         }
 
         [Given(@"that transactions where made")]
@@ -42,65 +41,67 @@ namespace AcceptanceTests.StepDefinitions
 
         {
             var transactionTable = table.CreateSet<Transaction>();
+            var transactions = new List<Transaction>();
             foreach (var transaction in transactionTable)
             {
-                TestContext.Transaction.Add(transaction);
+                transactions.Add(transaction);
             }
+            ScenarioContext.Add("Transactions", transactions);
         }
 
         [When(@"fees calculation app is executed")]
         public async Task FeesCalculationAppIsExecuted()
         {
             var readerMock = new Mock<IReadingFromFile>();
-            readerMock.Setup(x => x.GetMerchantDefaultValues(It.IsAny<string>())).Returns(ReadDefaultMerchantsFromRepositoryAsync);
+            readerMock.Setup(x => x.GetMerchantDefaultValues(It.IsAny<string>())).Returns<string>(ReadDefaultMerchantsFromRepositoryAsync);
             readerMock.Setup(x => x.ReadMerchantsFromRepositoryAsync())
                 .Returns(ReadMerchantsFromRepositoryAsync);
-            readerMock.Setup(x => x.ReadTranslationsFromRepositoryAsync())
-                .Returns(ReadTranslationsFromRepositoryAsync());
+
             var feeCalculator = new FeeCalculator.FeeCalculator(new MerchantFactory(new FeeFactory()), readerMock.Object);
-            foreach (var transaction in TestContext.Transaction)
+
+            var calculatedTransactions = new List<Transaction>();
+            await foreach (var transaction in ReadTranslationsFromRepositoryAsync())
             {
                 var returnedTransaction = await feeCalculator.Calculate(transaction);
-                TestContext.TransactionFees.Add(returnedTransaction.BasicFeeAmount);
+                calculatedTransactions.Add(returnedTransaction);
             }
+            ScenarioContext.Add("CalculatedFees", calculatedTransactions);
         }
 
-        [Then(@"the output is")]
-        public void FeesCalculationAppIsExecuted(Table table)
+        [Then(@"the output for Transaction Percentage Fee is")]
+        public void TheOutputIs(Table table)
         {
             var feeTable = table.CreateSet<Fee>();
-            var fees = feeTable.Select(x=>decimal.Parse(x.FeeAmount,_culture)).ToList();
+            var fees = feeTable.Select(x => decimal.Parse(x.FeeAmount, _culture)).ToList();
             var counter = 0;
-            foreach (var fee in TestContext.TransactionFees)
+            foreach (var fee in (List<Transaction>)ScenarioContext["CalculatedFees"])
             {
-                Assert.Equal(fee, fees[counter]);
+                Assert.Equal(fees[counter], fee.BasicFeeAmount);
                 counter++;
             }
         }
 
         public async IAsyncEnumerable<Transaction> ReadTranslationsFromRepositoryAsync()
         {
-            foreach (var merchant in TestContext.Transaction)
+            foreach (var merchant in (List<Transaction>)ScenarioContext["Transactions"])
             {
                 yield return merchant;
             }
         }
 
-        public MerchantInformation ReadDefaultMerchantsFromRepositoryAsync()
+        public MerchantInformation ReadDefaultMerchantsFromRepositoryAsync(string merchantName)
         {
-            return TestContext.DefaultMerchant.Clone();
+            var merchantInformation = (MerchantInformation)ScenarioContext["DefaultMerchantInformation"];
+            merchantInformation.MerchantName = merchantName;
+            return merchantInformation.Clone();
         }
 
         public async IAsyncEnumerable<MerchantInformation> ReadMerchantsFromRepositoryAsync()
         {
-            foreach (var merchant in TestContext.Merchants)
+            foreach (var merchant in (List<MerchantInformation>)ScenarioContext["MerchantInformation"])
             {
                 yield return merchant;
             }
-        }
-        private class Fee
-        {
-            public string FeeAmount { get; set; }
         }
     }
 }

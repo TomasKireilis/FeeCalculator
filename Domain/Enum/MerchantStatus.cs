@@ -1,6 +1,6 @@
 ﻿namespace Domain.Enum
 {
-    public enum MerchantType
+    public enum MerchantStatus
     {
         Default,
         Big

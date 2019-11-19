@@ -20,10 +20,10 @@ namespace Domain.Factories
         {
             if (_bigMerchantValidation.ItIsBigMerchant(merchantInformation))
             {
-                return new Merchants.Merchant(_merchantFeeFactory.CreateMerchantFeeFactory(MerchantType.Big), merchantInformation);
+                return new Merchants.Merchant(_merchantFeeFactory.CreateMerchantFeeFactory(MerchantStatus.Big), merchantInformation);
             }
 
-            return new Merchants.Merchant(_merchantFeeFactory.CreateMerchantFeeFactory(MerchantType.Default), merchantInformation);
+            return new Merchants.Merchant(_merchantFeeFactory.CreateMerchantFeeFactory(MerchantStatus.Default), merchantInformation);
         }
     }
 }

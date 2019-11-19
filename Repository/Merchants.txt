@@ -1,2 +1,2 @@
-﻿TELIA Big null null 10
-CIRCLE_K Big null null 20
+﻿TELIA BIG NULL NULL 10
+CIRCLE_K BIG NULL NULL 20

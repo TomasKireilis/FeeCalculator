@@ -16,7 +16,7 @@ namespace Domain.Merchants
 
         public Transaction CalculateFee(Transaction transaction)
         {
-            var fees = _feeFactory.AddFee(transaction, MerchantInformation);
+            var fees = _feeFactory.AddFee();
             foreach (var fee in fees)
             {
                 transaction = fee.Calculate(transaction, MerchantInformation);
