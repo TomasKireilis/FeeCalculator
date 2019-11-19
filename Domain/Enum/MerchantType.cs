@@ -3,6 +3,6 @@
     public enum MerchantType
     {
         Default,
-        Big,
+        Big
     }
 }

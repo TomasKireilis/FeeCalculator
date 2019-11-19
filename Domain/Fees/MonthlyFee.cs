@@ -20,7 +20,7 @@ namespace Domain.Fees
 
         public Transaction Calculate(Transaction transaction, MerchantInformation merchantInformation)
         {
-            transaction.MonthlyFeeAmount = merchantInformation.MonthlyFee;
+            transaction.MonthlyFeeAmount += merchantInformation.MonthlyFee;
             LastMonthlyFee = transaction.Date;
             return transaction;
         }

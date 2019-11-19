@@ -10,6 +10,7 @@ namespace FeeCalculator
     {
         private static IReadingFromFile _reader;
         private static IFeeCalculator _feeCalculator;
+        private static readonly CultureInfo Culture = new CultureInfo("en-US");
 
         public static async Task Main(string[] args)
         {
@@ -35,7 +36,7 @@ namespace FeeCalculator
             Console.WriteLine(
                 $"{calculatedTransaction.Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}" +
                 $" {calculatedTransaction.MerchantName}" +
-                $" {calculatedTransaction.BasicFeeAmount + calculatedTransaction.MonthlyFeeAmount}");
+                $" {(calculatedTransaction.BasicFeeAmount + calculatedTransaction.MonthlyFeeAmount).ToString("0.00",Culture)}");
         }
     }
 }
