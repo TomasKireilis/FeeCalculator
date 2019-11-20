@@ -1,7 +1,7 @@
 ﻿using Repository;
 using System.Threading.Tasks;
 
-namespace FeeCalculator
+namespace FeeCalculatorService
 {
     public interface IFeeCalculator
     {

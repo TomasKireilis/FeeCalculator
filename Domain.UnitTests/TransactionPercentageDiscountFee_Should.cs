@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Domain.Fees;
+﻿using Domain.Fees;
 using Repository;
 using Xunit;
 
@@ -18,16 +15,14 @@ namespace Domain.UnitTests
         {
             //setup
             var fees = new TransactionPercentageDiscountFee();
-            var merchantInformation = new MerchantInformation {TransactionPercentageDiscountFee = feeAmount};
-            var transaction = new Transaction {TransactionPercentageFeeAmount = amount};
-
-
+            var merchantInformation = new MerchantInformation { TransactionPercentageDiscountFee = feeAmount };
+            var transaction = new Transaction { TransactionPercentageFeeAmount = amount };
 
             //act
             var response = fees.Calculate(transaction, merchantInformation);
 
             //Assert
-            Assert.Equal( expectedResult,response.TransactionPercentageFeeAmount);
+            Assert.Equal(expectedResult, response.TransactionPercentageFeeAmount);
         }
     }
 }

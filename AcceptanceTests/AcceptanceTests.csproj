@@ -31,17 +31,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\FeeCalculator\FeeCalculator.csproj" />
+    <ProjectReference Include="..\FeeCalculatorService\FeeCalculatorService.csproj" />
+    <ProjectReference Include="..\FeeCalculator\FeeCalculatorService.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Features\InvoiceFixedFee.Feature.cs">
-      <DependentUpon>InvoiceFixedFee.Feature</DependentUpon>
-    </Compile>
-    <Compile Update="Features\TransactionPercentageDiscountFee.Feature.cs">
-      <DependentUpon>TransactionPercentageDiscountFee.Feature</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>

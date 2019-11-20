@@ -57,10 +57,10 @@ namespace AcceptanceTests.StepDefinitions
             readerMock.Setup(x => x.ReadMerchantsFromRepositoryAsync())
                 .Returns(ReadMerchantsFromRepositoryAsync);
 
-            var feeCalculator = new FeeCalculator.FeeCalculator(new MerchantFactory(new FeeFactory()), readerMock.Object);
+            var feeCalculator = new FeeCalculatorService.FeeCalculator(new MerchantFactory(new FeeFactory()), readerMock.Object);
 
             var calculatedTransactions = new List<Transaction>();
-            await foreach (var transaction in ReadTranslationsFromRepositoryAsync())
+            await foreach (var transaction in ReadTransactionsFromRepositoryAsync())
             {
                 var returnedTransaction = await feeCalculator.Calculate(transaction);
                 calculatedTransactions.Add(returnedTransaction);
@@ -81,7 +81,7 @@ namespace AcceptanceTests.StepDefinitions
             }
         }
 
-        public async IAsyncEnumerable<Transaction> ReadTranslationsFromRepositoryAsync()
+        public async IAsyncEnumerable<Transaction> ReadTransactionsFromRepositoryAsync()
         {
             foreach (var merchant in (List<Transaction>)ScenarioContext["Transactions"])
             {

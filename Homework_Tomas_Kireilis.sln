@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeeCalculator", "FeeCalculator\FeeCalculator.csproj", "{7AD9D672-AEC0-44CF-AF8E-C608BC4A3F08}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeeCalculator_Should", "FeeCalculator_Should\FeeCalculator_Should.csproj", "{B4E80425-CC7E-444B-B4E6-ADDE505BC93C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeeCalculatorService", "FeeCalculatorService\FeeCalculatorService.csproj", "{7AD9D672-AEC0-44CF-AF8E-C608BC4A3F08}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{3EDCDE5C-6D12-44B1-A1EB-0162D24E5F10}"
 EndProject
@@ -13,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcceptanceTests", "AcceptanceTests\AcceptanceTests.csproj", "{61EAA010-599C-4D85-A7CC-0E47DC97F606}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UnitTests", "Domain.UnitTests\Domain.UnitTests.csproj", "{B7801D99-F76D-42FE-AE9F-CA1AAB909826}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.UnitTests", "Domain.UnitTests\Domain.UnitTests.csproj", "{B7801D99-F76D-42FE-AE9F-CA1AAB909826}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeeCalculatorService.UnitTests", "FeeCalculatorService.UnitTests\FeeCalculatorService.UnitTests.csproj", "{FAA9449A-3369-4D75-A722-2D89DA4BE5DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +25,6 @@ Global
 		{7AD9D672-AEC0-44CF-AF8E-C608BC4A3F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AD9D672-AEC0-44CF-AF8E-C608BC4A3F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AD9D672-AEC0-44CF-AF8E-C608BC4A3F08}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B4E80425-CC7E-444B-B4E6-ADDE505BC93C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4E80425-CC7E-444B-B4E6-ADDE505BC93C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4E80425-CC7E-444B-B4E6-ADDE505BC93C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4E80425-CC7E-444B-B4E6-ADDE505BC93C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3EDCDE5C-6D12-44B1-A1EB-0162D24E5F10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3EDCDE5C-6D12-44B1-A1EB-0162D24E5F10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EDCDE5C-6D12-44B1-A1EB-0162D24E5F10}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{B7801D99-F76D-42FE-AE9F-CA1AAB909826}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7801D99-F76D-42FE-AE9F-CA1AAB909826}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7801D99-F76D-42FE-AE9F-CA1AAB909826}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAA9449A-3369-4D75-A722-2D89DA4BE5DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAA9449A-3369-4D75-A722-2D89DA4BE5DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAA9449A-3369-4D75-A722-2D89DA4BE5DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAA9449A-3369-4D75-A722-2D89DA4BE5DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

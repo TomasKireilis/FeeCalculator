@@ -17,8 +17,8 @@ namespace Domain.UnitTests
         {
             //setup
             var fees = new InvoiceFixedFee();
-            var merchantInformation = new MerchantInformation {InvoiceFixedFee = feeAmount};
-            var transaction = new Transaction {Date = DateTimeOffset.Now, TransactionPercentageFeeAmount = 10};
+            var merchantInformation = new MerchantInformation { InvoiceFixedFee = feeAmount };
+            var transaction = new Transaction { Date = DateTimeOffset.Now, TransactionPercentageFeeAmount = 10 };
 
             //act
             var response = fees.Calculate(transaction, merchantInformation);
@@ -37,8 +37,8 @@ namespace Domain.UnitTests
             string merchantName, decimal amount)
         {
             //setup
-            var fees = new InvoiceFixedFee {LastInvoiceFixedFeeDate = DateTimeOffset.Parse(lastDateString)};
-            var merchantInformation = new MerchantInformation {InvoiceFixedFee = 10};
+            var fees = new InvoiceFixedFee { LastInvoiceFixedFeeDate = DateTimeOffset.Parse(lastDateString) };
+            var merchantInformation = new MerchantInformation { InvoiceFixedFee = 10 };
             var transaction = CreateTransaction(dateString, merchantName, amount);
 
             //act
@@ -54,7 +54,7 @@ namespace Domain.UnitTests
             //setup
             var fees = new InvoiceFixedFee();
             var merchantInformation = new MerchantInformation { InvoiceFixedFee = 10 };
-            var transaction = new Transaction {TransactionPercentageFeeAmount = 0, Date = DateTimeOffset.Now};
+            var transaction = new Transaction { TransactionPercentageFeeAmount = 0, Date = DateTimeOffset.Now };
 
             //act
             var response = fees.Calculate(transaction, merchantInformation);

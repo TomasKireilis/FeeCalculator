@@ -19,6 +19,7 @@ namespace Domain.UnitTests
             //Assert
             Assert.True(response);
         }
+
         [Fact]
         public void ReturnFalse_When_MerchantStateIsNotBig()
         {
