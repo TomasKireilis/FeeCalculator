@@ -1,6 +1,5 @@
 ﻿using Repository;
 using System.Collections.Generic;
-using System.Globalization;
 using TechTalk.SpecFlow;
 
 namespace AcceptanceTests.StepDefinitions
@@ -8,8 +7,6 @@ namespace AcceptanceTests.StepDefinitions
     [Binding]
     public class TransactionPercentageFeeDiscountSteps : Steps
     {
-        private readonly CultureInfo _culture = new CultureInfo("en-US");
-
         private readonly List<MerchantInformation> _merchantInformation = new List<MerchantInformation>()
         {
             new MerchantInformation()

@@ -23,7 +23,7 @@ namespace Domain.UnitTests
             var response = fees.Calculate(transaction, merchantInformation);
 
             //Assert
-            Assert.Equal(expectedResult, transaction.TransactionPercentageFeeAmount);
+            Assert.Equal(expectedResult, response.TransactionPercentageFeeAmount);
         }
     }
 }
