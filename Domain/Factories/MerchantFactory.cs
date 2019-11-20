@@ -1,8 +1,8 @@
-﻿using Domain.Enum;
+﻿using Domain.Enums;
 using Domain.Factories.Interfaces;
+using Domain.Merchants;
 using Domain.MerchantTypeRules;
 using Repository;
-using System.Threading.Tasks;
 
 namespace Domain.Factories
 {
@@ -16,14 +16,14 @@ namespace Domain.Factories
             _merchantFeeFactory = merchantFeeFactory;
         }
 
-        public async Task<Merchants.Merchant> CreateMerchant(Transaction transaction, MerchantInformation merchantInformation)
+        public Merchant CreateMerchant(Transaction transaction, MerchantInformation merchantInformation)
         {
             if (_bigMerchantValidation.ItIsBigMerchant(merchantInformation))
             {
-                return new Merchants.Merchant(_merchantFeeFactory.CreateMerchantFeeFactory(MerchantStatus.Big), merchantInformation);
+                return new Merchant(_merchantFeeFactory.CreateMerchantFeeFactory(MerchantStatus.Big), merchantInformation);
             }
 
-            return new Merchants.Merchant(_merchantFeeFactory.CreateMerchantFeeFactory(MerchantStatus.Default), merchantInformation);
+            return new Merchant(_merchantFeeFactory.CreateMerchantFeeFactory(MerchantStatus.Default), merchantInformation);
         }
     }
 }

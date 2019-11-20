@@ -40,9 +40,9 @@ namespace AcceptanceTests.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "TransactionPercentageDiscountFee", "\t\tAs a MobilePay accountant I want (TELIA 10% dicount for transaction, CIRCLE_K 2" +
-                    "0% dicount for transaction) to get Transaction Percentage Fee Discount,\r\n\t\tso th" +
-                    "at MobilePay would be more attractive to big merchants", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "TransactionPercentageDiscountFee", "\t\tAs a MobilePay accountant I want (TELIA 10% discount for transaction, CIRCLE_K " +
+                    "20% discount for transaction) to get Transaction Percentage Fee Discount,\r\n\t\tso " +
+                    "that MobilePay would be more attractive to big merchants", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

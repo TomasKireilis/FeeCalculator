@@ -7,9 +7,9 @@ namespace AcceptanceTests.StepDefinitions
     [Binding]
     public class TransactionPercentageFeeDiscountSteps : Steps
     {
-        private readonly List<MerchantInformation> _merchantInformation = new List<MerchantInformation>()
+        private readonly List<MerchantInformation> _merchantInformation = new List<MerchantInformation>
         {
-            new MerchantInformation()
+            new MerchantInformation
             {
                 MerchantName = "TELIA",
                 Status = "BIG",
@@ -17,7 +17,7 @@ namespace AcceptanceTests.StepDefinitions
                 TransactionPercentageDiscountFee = 10,
                 InvoiceFixedFee = 29
             },
-            new MerchantInformation()
+            new MerchantInformation
             {
                 MerchantName = "CIRCLE_K",
                 Status = "BIG",
@@ -27,7 +27,7 @@ namespace AcceptanceTests.StepDefinitions
             }
         };
 
-        private readonly MerchantInformation _defaultMerchantInformation = new MerchantInformation()
+        private readonly MerchantInformation _defaultMerchantInformation = new MerchantInformation
         {
             MerchantName = "DEFAULT",
             Status = "DEFAULT",
@@ -37,7 +37,7 @@ namespace AcceptanceTests.StepDefinitions
         };
 
         [Given(@"Merchant repository is populated with Transaction Percentage Fee Discount business logic")]
-        public void MerchantRepositoryIsPopulateWithTransactionPercentageFeeBusinessLogic()
+        public void MerchantRepositoryIsPopulateWithTransactionPercentageDiscountFeeBusinessLogic()
 
         {
             ScenarioContext.Add("DefaultMerchantInformation", _defaultMerchantInformation);

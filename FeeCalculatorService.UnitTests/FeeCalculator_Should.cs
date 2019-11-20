@@ -27,7 +27,7 @@ namespace FeeCalculatorService.UnitTests
             readingFromFileMock.Setup(x => x.ReadMerchantsFromRepositoryAsync()).Returns(ReadMerchantsFromRepositoryAsync);
             readingFromFileMock.Setup(x => x.GetMerchantDefaultValues(It.IsAny<string>())).Returns(merchantInformation);
             merchantFactory.Setup(x => x.CreateMerchant(It.Is<Transaction>(y => y.Equals(transaction)),
-                It.Is<MerchantInformation>(y => y.Equals(merchantInformation)))).ReturnsAsync(merchant);
+                It.Is<MerchantInformation>(y => y.Equals(merchantInformation)))).Returns(merchant);
             await sut.Calculate(transaction);
             merchantFactory.Verify(x => x.CreateMerchant(transaction, It.Is<MerchantInformation>(y => y.Equals(merchantInformation))), Times.Once);
             merchantFeeFactory.Verify(x => x.AddFee(), Times.Once);
@@ -49,7 +49,7 @@ namespace FeeCalculatorService.UnitTests
             readingFromFileMock.Setup(x => x.ReadMerchantsFromRepositoryAsync()).Returns(ReadMerchantsFromRepositoryAsync);
             readingFromFileMock.Setup(x => x.GetMerchantDefaultValues(It.IsAny<string>())).Returns(merchantInformation);
             merchantFactory.Setup(x => x.CreateMerchant(It.Is<Transaction>(y => y.Equals(transaction)),
-                It.Is<MerchantInformation>(y => y.Equals(merchantInformation)))).ReturnsAsync(merchant);
+                It.Is<MerchantInformation>(y => y.Equals(merchantInformation)))).Returns(merchant);
             //Act
             await sut.Calculate(transaction);
             await sut.Calculate(transaction);

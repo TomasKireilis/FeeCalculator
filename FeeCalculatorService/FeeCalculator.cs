@@ -45,7 +45,7 @@ namespace FeeCalculatorService
             if (merchants.Count == 0)
             {
                 var mer = await GetMerchantInfo(transaction);
-                var merchant = await _merchantFactory.CreateMerchant(transaction, mer);
+                var merchant = _merchantFactory.CreateMerchant(transaction, mer);
                 _merchants.Add(merchant);
                 return merchant;
             }

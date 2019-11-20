@@ -1,10 +1,10 @@
-﻿using Repository;
-using System.Threading.Tasks;
+﻿using Domain.Merchants;
+using Repository;
 
 namespace Domain.Factories.Interfaces
 {
     public interface IMerchantFactory
     {
-        Task<Merchants.Merchant> CreateMerchant(Transaction transaction, MerchantInformation merchantInformation);
+        Merchant CreateMerchant(Transaction transaction, MerchantInformation merchantInformation);
     }
 }

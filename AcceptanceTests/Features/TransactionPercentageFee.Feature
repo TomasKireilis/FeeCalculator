@@ -1,6 +1,6 @@
 ﻿Feature: TransactionPercentageFee		
-		As a MobilePay accountant I want merchants to be charged Transaction Percentage Fee (1% of transaction 
-		amount), so that MobilePay would still be cheapest solution in the market and we could earn enough money
+		As a MobilePay accountant I want merchants to be charged Transaction Percentage Fee (1% of transaction amount),
+		so that MobilePay would still be cheapest solution in the market and we could earn enough money
 		to cover our expenses
 
 Scenario Outline: CalculateTransactionPercentageFee

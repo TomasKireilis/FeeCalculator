@@ -41,8 +41,8 @@ namespace AcceptanceTests.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "TransactionPercentageFee", "\t\tAs a MobilePay accountant I want merchants to be charged Transaction Percentage" +
-                    " Fee (1% of transaction \r\n\t\tamount), so that MobilePay would still be cheapest s" +
-                    "olution in the market and we could earn enough money\r\n\t\tto cover our expenses", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    " Fee (1% of transaction amount),\r\n\t\tso that MobilePay would still be cheapest so" +
+                    "lution in the market and we could earn enough money\r\n\t\tto cover our expenses", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
