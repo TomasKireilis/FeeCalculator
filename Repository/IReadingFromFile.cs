@@ -6,7 +6,7 @@ namespace Repository
     {
         MerchantInformation GetMerchantDefaultValues(string merchantName);
 
-        IAsyncEnumerable<Transaction> ReadTranslationsFromRepositoryAsync();
+        IAsyncEnumerable<Transaction> ReadTransactionsFromRepositoryAsync();
 
         IAsyncEnumerable<MerchantInformation> ReadMerchantsFromRepositoryAsync();
     }

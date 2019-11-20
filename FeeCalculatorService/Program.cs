@@ -9,10 +9,13 @@ namespace FeeCalculatorService
     public class Program
     {
         private static readonly CultureInfo Culture = new CultureInfo("en-US");
+        private const string TransactionPath = "transactions.txt";
+        private const string MerchantPath = "Merchants.txt";
+        private const string DefaultMerchantPath = "DefaultMerchant.txt";
 
         public static async Task Main(string[] args)
         {
-            var reader = new ReadingFromFile();
+            var reader = new ReadingFromFile(TransactionPath, DefaultMerchantPath, MerchantPath);
 
             var feeCalculator = new FeeCalculatorService.FeeCalculator(
                 new MerchantFactory(new FeeFactory()),
@@ -23,7 +26,7 @@ namespace FeeCalculatorService
 
         public static async Task CalculateFee(IReadingFromFile readingFromFile, IFeeCalculator feeCalculator)
         {
-            await foreach (var transaction in readingFromFile.ReadTranslationsFromRepositoryAsync())
+            await foreach (var transaction in readingFromFile.ReadTransactionsFromRepositoryAsync())
             {
                 var calculatedTransaction = await feeCalculator.Calculate(transaction);
                 WriteToConsole(calculatedTransaction);

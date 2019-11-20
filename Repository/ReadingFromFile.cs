@@ -9,17 +9,22 @@ namespace Repository
     public class ReadingFromFile : IReadingFromFile
     {
         private MerchantInformation _defaultValues;
-        private const string TransactionPath = "transactions.txt";
-        private const string MerchantPath = "Merchants.txt";
-        private const string DefaultMerchantPath = "DefaultMerchant.txt";
+
+        private string DefaultMerchantPath { get; }
+        private string TransactionPath { get; }
+        private string MerchantPath { get; }
+
         private readonly CultureInfo _culture = new CultureInfo("en-US");
 
-        public ReadingFromFile()
+        public ReadingFromFile(string transactionPath, string defaultMerchantPath, string merchantPath)
         {
+            TransactionPath = transactionPath;
+            DefaultMerchantPath = defaultMerchantPath;
+            MerchantPath = merchantPath;
             FetchDefaultMerchantInformation(DefaultMerchantPath);
         }
 
-        public async IAsyncEnumerable<Transaction> ReadTranslationsFromRepositoryAsync()
+        public async IAsyncEnumerable<Transaction> ReadTransactionsFromRepositoryAsync()
         {
             string line;
             StreamReader file = new StreamReader(TransactionPath);

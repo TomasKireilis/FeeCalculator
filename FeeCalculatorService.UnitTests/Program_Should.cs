@@ -22,7 +22,7 @@ namespace FeeCalculatorService.UnitTests
             transaction.MerchantName = merchantInformation.MerchantName;
             readingFromFile.Setup(x => x.ReadMerchantsFromRepositoryAsync()).Returns(ReadMerchantsFromRepositoryAsync);
             readingFromFile.Setup(x => x.GetMerchantDefaultValues(It.IsAny<string>())).Returns(merchantInformation);
-            readingFromFile.Setup(x => x.ReadTranslationsFromRepositoryAsync()).Returns(ReadTransactionsFromRepositoryAsync);
+            readingFromFile.Setup(x => x.ReadTransactionsFromRepositoryAsync()).Returns(ReadTransactionsFromRepositoryAsync);
             feeCalculator.Setup(x => x.Calculate(It.IsAny<Transaction>())).ReturnsAsync(transaction);
             //Act
             await Program.CalculateFee(readingFromFile.Object, feeCalculator.Object);
